@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A website to manage the human resources of a firm."
+    />
+    <title>HRM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope&family=Urbanist:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/normalize.css" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="flex container">
+      <h1><img class="logo" src="./assets/images/logo.png" alt="" /></h1>
+      <form class="search-bar flex">
+        <input type="text" name="" id="" placeholder="Search" />
+        <button>
+          <img
+            class="search-icon"
+            src="./assets/images/search_icon.svg"
+            alt=""
+          />
+        </button>
+      </form>
+    </header>
+    <main class="container">
+      <section>
+        <div class="table-options flex">
+          <div>
+            <button class="primary-button add-new-user flex">
+              <span>Add new user</span>
+              <img
+                class="add-new-user-icon"
+                src="./assets/images/add_user_icon.svg"
+                alt=""
+              />
+            </button>
+            <div class="overlay"></div>
+            <div class="new-employee-form-container">
+              <img
+                class="close-button"
+                src="./assets/images/close_button_icon.svg"
+                alt=""
+              />
+              <h3>Add new user</h3>
+              <form>
+                <fieldset>
+                  <legend>Personal Details</legend>
+                  <label>First name : </label>
+                  <input type="text" name="" id="" />
+                  <br />
+                  <label>Last name : </label>
+                  <input type="text" name="" id="" />
+                  <br />
+                  <label>Date of birth : </label>
+                  <input type="text" name="" id="" />
+                </fieldset>
+                <fieldset>
+                  <legend>Contact Details</legend>
+                  <label>Address : </label>
+                  <input type="text" name="" id="" />
+                  <br />
+                  <label>Phone : </label>
+                  <input type="text" name="" id="" />
+                  <br />
+                  <label>Email : </label>
+                  <input type="text" name="" id="" />
+                </fieldset>
+                <fieldset>
+                  <legend>Employment Details</legend>
+                  <label>Date of joining : </label>
+                  <input type="text" name="" id="" />
+                  <br />
+                  <label>Role : </label>
+                  <input type="text" name="" id="" />
+                  <br />
+                  <label>Skills : </label>
+                  <input type="text" name="" id="" />
+                </fieldset>
+                <fieldset>
+                  <input class="primary-button" type="reset" name="" id="" />
+                  <input
+                    class="primary-button"
+                    type="submit"
+                    name=""
+                    id=""
+                    value="Submit"
+                  />
+                </fieldset>
+              </form>
+            </div>
+          </div>
+          <div class="filter">
+            <form action="" class="search-bar flex">
+              <input
+                class="filter-search"
+                type="text"
+                placeholder="Filter Skills"
+              />
+              <button class="clear-filter-button flex">
+            </form>
+              <img class="clear-filter-icon" src="./assets/images/clear_filter_icon.svg" alt="" />
+            </button>
+            <form
+              action=""
+              autocomplete="off"
+              class="flex filter-options-container"
+            >
+              <div class="filter-options flex">
+                <input
+                  class="filter-checkbox"
+                  type="checkbox"
+                  value="HTML"
+                  id="html"
+                />
+                <label for="html">HTML</label>
+              </div>
+              <div class="filter-options flex">
+                <input
+                  class="filter-checkbox"
+                  type="checkbox"
+                  value="CSS"
+                  id="css"
+                />
+                <label for="css">CSS</label>
+              </div>
+              <div class="filter-options flex">
+                <input
+                  class="filter-checkbox"
+                  type="checkbox"
+                  value="React"
+                  id="react"
+                />
+                <label for="react">React</label>
+              </div>
+              <div class="filter-options flex">
+                <input
+                  class="filter-checkbox"
+                  type="checkbox"
+                  value="Node"
+                  id="node"
+                />
+                <label for="node">Node</label>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="selected-skills flex"></div>
+      </section>
+      <section class="tablular-section">
+        <div class="table-container">
+          <table class="table">
+            <thead class="table-header">
+              <tr>
+                <th>
+                  <div class="column-header flex" data-storage-key="id">
+                    <h3>Employee ID</h3>
+                    <img
+                      class="sort-icon"
+                      src="./assets/images/ascending_order_icon.svg"
+                      alt=""
+                    />
+                  </div>
+                </th>
+                <th>
+                  <div class="column-header flex" data-storage-key="name">
+                    <h3>Name</h3>
+                    <img
+                      class="sort-icon"
+                      src="./assets/images/ascending_order_icon.svg"
+                      alt=""
+                    />
+                  </div>
+                </th>
+                <th>
+                  <div class="column-header flex" data-storage-key="department">
+                    <h3>Department</h3>
+                    <img
+                      class="sort-icon"
+                      src="./assets/images/ascending_order_icon.svg"
+                      alt=""
+                    />
+                  </div>
+                </th>
+                <th>
+                  <div class="column-header flex" data-storage-key="role">
+                    <h3>Role</h3>
+                    <img
+                      class="sort-icon"
+                      src="./assets/images/ascending_order_icon.svg"
+                      alt=""
+                    />
+                  </div>
+                </th>
+                <th>
+                  <div class="action-column flex">
+                    <h3>Actions</h3>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer></footer>
+    <script src="./js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,267 @@
+/*----------------------------- 
+Common classes 
+-----------------------------*/
+body {
+  background-color: #151515;
+  color: white;
+  font-family: Urbanist;
+}
+
+.container {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+}
+
+button,
+input[type="submit"],
+input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.primary-button,
+fieldset .primary-button {
+  background-color: #39b85e;
+  border-radius: 5px;
+  height: 35px;
+}
+/*----------------------------- 
+Header 
+-----------------------------*/
+header.container {
+  height: 80px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #151515;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.logo {
+  width: 150px;
+}
+
+.search-bar {
+  border-radius: 5px;
+  background-color: #262626;
+  width: 250px;
+  justify-content: space-between;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.search-bar input {
+  border-radius: 0 0 0 20px;
+  background-color: #262626;
+  color: white;
+  width: 90%;
+  padding: 0 0 0 10px;
+  border: 2px solid #262626;
+}
+
+.search-bar input::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.search-icon {
+  padding-right: 10px;
+}
+/*----------------------------- 
+Main 
+-----------------------------*/
+.add-new-user {
+  width: 150px;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.add-new-user-icon {
+  width: 32px;
+}
+
+.table-container {
+  border-radius: 10px;
+  background-color: #1e1e1e;
+  padding: 5px;
+}
+
+thead {
+  text-align: left;
+  background-color: #262626;
+  height: 40px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+tr {
+  border-bottom: 1px solid white;
+  height: 50px;
+}
+
+.action-button {
+  width: 30px;
+  margin-right: 20px;
+}
+
+.column-header,
+.action-column {
+  text-align: left;
+  border-radius: 5px;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.column-header:hover {
+  background-color: #39b85e;
+  color: black;
+  cursor: pointer;
+}
+
+td {
+  padding: 10px;
+}
+
+.table-row:hover {
+  background-color: #39b85e;
+  color: black;
+}
+
+.sort-icon {
+  visibility: hidden;
+}
+
+.sort-icon.open {
+  visibility: visible;
+  transition: all 0.5s;
+}
+/*----------------------------- 
+New Employee Modal 
+-----------------------------*/
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.212);
+}
+
+.overlay.open {
+  display: block;
+}
+
+.new-employee-form-container {
+  display: none;
+  background-color: rgb(0, 0, 0);
+}
+
+.new-employee-form-container.open {
+  z-index: 10;
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.close-button {
+  float: right;
+  width: 50px;
+}
+
+fieldset .primary-button {
+  width: 100px;
+}
+
+.selected-skills {
+  border: 1px solid white;
+  gap: 15px;
+}
+
+.selected-skill-button {
+  background-color: #39b85e;
+  color: black;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+  border-radius: 25px;
+  gap: 10px;
+}
+
+.skill-close {
+  display: flex;
+}
+
+.skill-close img {
+  width: 25px;
+}
+
+input[type="checkbox"]:checked {
+  accent-color: white;
+}
+
+.filter label {
+  display: block;
+  width: 100%;
+}
+
+.search-bar .filter-search {
+  width: 200px;
+  
+}
+
+.filter-options-container {
+  width: 200px;
+  flex-direction: column;
+  border: 1px solid white;
+  visibility: hidden;
+}
+
+.filter-options-container.open {
+  visibility: visible;
+  max-height: 200px;
+  overflow: auto;
+  background-color: white;
+  color: white;
+  background-color: #262626;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.filter-options:hover {
+  background-color: #39b85e;
+}
+
+.table-options {
+  justify-content: space-between;
+}
+
+.clear-filter-button{
+align-items: center;
+}
+
+.clear-filter-icon{
+  width: 42px;
+  height: 32px;
+}
