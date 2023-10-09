@@ -20,9 +20,9 @@
   <body>
     <header class="flex container">
       <h1><img class="logo" src="./assets/images/logo.png" alt="" /></h1>
-      <form class="search-bar flex">
+      <form class="search-bar flex" style="visibility: hidden">
         <input type="text" name="" id="" placeholder="Search" />
-        <button>
+        <button type="button">
           <img
             class="search-icon"
             src="./assets/images/search_icon.svg"
@@ -31,11 +31,86 @@
         </button>
       </form>
     </header>
+
     <main class="container">
+      <section class="modals">
+        <div class="overlay"></div>
+        <div class="new-employee-form">
+          <button class="close-button-container">
+            <img
+              class="close-button"
+              src="./assets/images/close_button_icon.svg"
+              alt=""
+            />
+          </button>
+          <h3>Add new user</h3>
+          <form>
+            <fieldset>
+              <legend>Personal Details</legend>
+              <label>First name : </label>
+              <input type="text" name="" id="" />
+              <br />
+              <label>Last name : </label>
+              <input type="text" name="" id="" />
+              <br />
+              <label>Date of birth : </label>
+              <input type="text" name="" id="" />
+            </fieldset>
+            <fieldset>
+              <legend>Contact Details</legend>
+              <label>Address : </label>
+              <input type="text" name="" id="" />
+              <br />
+              <label>Phone : </label>
+              <input type="text" name="" id="" />
+              <br />
+              <label>Email : </label>
+              <input type="text" name="" id="" />
+            </fieldset>
+            <fieldset>
+              <legend>Employment Details</legend>
+              <label>Date of joining : </label>
+              <input type="text" name="" id="" />
+              <br />
+              <label>Role : </label>
+              <input type="text" name="" id="" />
+              <br />
+              <label>Skills : </label>
+              <input type="text" name="" id="" />
+            </fieldset>
+            <fieldset>
+              <input class="primary-button" type="reset" name="" id="" />
+              <input
+                class="primary-button"
+                type="submit"
+                name=""
+                id=""
+                value="Submit"
+              />
+            </fieldset>
+          </form>
+        </div>
+        <div class="delete-employee">
+          <button class="close-button-container">
+            <img
+              class="close-button"
+              src="./assets/images/close_button_icon.svg"
+              alt=""
+            />
+          </button>
+          <h3>Delete Employee Details</h3>
+          <p>Do you really want to delete this employee's details?</p>
+          <div class="delete-employee-details"></div>
+          <div class="confirmation-buttons flex">
+            <button class="primary-button" value="yes">Yes</button>
+            <button class="primary-button" value="no">No</button>
+          </div>
+        </div>
+      </section>
       <section>
         <div class="table-options flex">
-          <div>
-            <button class="primary-button add-new-user flex">
+          <div class="add-new-employee" style="visibility: hidden">
+            <button type="button" class="primary-button add-new-user flex">
               <span>Add new user</span>
               <img
                 class="add-new-user-icon"
@@ -43,72 +118,23 @@
                 alt=""
               />
             </button>
-            <div class="overlay"></div>
-            <div class="new-employee-form-container">
-              <img
-                class="close-button"
-                src="./assets/images/close_button_icon.svg"
-                alt=""
-              />
-              <h3>Add new user</h3>
-              <form>
-                <fieldset>
-                  <legend>Personal Details</legend>
-                  <label>First name : </label>
-                  <input type="text" name="" id="" />
-                  <br />
-                  <label>Last name : </label>
-                  <input type="text" name="" id="" />
-                  <br />
-                  <label>Date of birth : </label>
-                  <input type="text" name="" id="" />
-                </fieldset>
-                <fieldset>
-                  <legend>Contact Details</legend>
-                  <label>Address : </label>
-                  <input type="text" name="" id="" />
-                  <br />
-                  <label>Phone : </label>
-                  <input type="text" name="" id="" />
-                  <br />
-                  <label>Email : </label>
-                  <input type="text" name="" id="" />
-                </fieldset>
-                <fieldset>
-                  <legend>Employment Details</legend>
-                  <label>Date of joining : </label>
-                  <input type="text" name="" id="" />
-                  <br />
-                  <label>Role : </label>
-                  <input type="text" name="" id="" />
-                  <br />
-                  <label>Skills : </label>
-                  <input type="text" name="" id="" />
-                </fieldset>
-                <fieldset>
-                  <input class="primary-button" type="reset" name="" id="" />
-                  <input
-                    class="primary-button"
-                    type="submit"
-                    name=""
-                    id=""
-                    value="Submit"
-                  />
-                </fieldset>
-              </form>
-            </div>
           </div>
+
           <div class="filter">
             <form action="" class="search-bar flex">
               <input
                 class="filter-search"
                 type="text"
-                placeholder="Filter Skills"
+                placeholder="Click to view dropdown"
               />
-              <button class="clear-filter-button flex">
+              <button type="button" class="clear-filter-button flex">
+                <img
+                  class="clear-filter-icon"
+                  src="./assets/images/clear_filter_icon.svg"
+                  alt=""
+                />
+              </button>
             </form>
-              <img class="clear-filter-icon" src="./assets/images/clear_filter_icon.svg" alt="" />
-            </button>
             <form
               action=""
               autocomplete="off"
@@ -119,43 +145,43 @@
                   class="filter-checkbox"
                   type="checkbox"
                   value="HTML"
-                  id="html"
+                  id="HTML"
                 />
-                <label for="html">HTML</label>
+                <label for="HTML">HTML</label>
               </div>
               <div class="filter-options flex">
                 <input
                   class="filter-checkbox"
                   type="checkbox"
                   value="CSS"
-                  id="css"
+                  id="CSS"
                 />
-                <label for="css">CSS</label>
+                <label for="CSS">CSS</label>
               </div>
               <div class="filter-options flex">
                 <input
                   class="filter-checkbox"
                   type="checkbox"
                   value="React"
-                  id="react"
+                  id="React"
                 />
-                <label for="react">React</label>
+                <label for="React">React</label>
               </div>
               <div class="filter-options flex">
                 <input
                   class="filter-checkbox"
                   type="checkbox"
                   value="Node"
-                  id="node"
+                  id="Node"
                 />
-                <label for="node">Node</label>
+                <label for="Node">Node</label>
               </div>
             </form>
           </div>
         </div>
         <div class="selected-skills flex"></div>
       </section>
-      <section class="tablular-section">
+      <section class="tabular-section">
         <div class="table-container">
           <table class="table">
             <thead class="table-header">

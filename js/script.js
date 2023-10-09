@@ -1,28 +1,21 @@
 //Storing few employee details to localStorage
-let employees = [
+let employeesDb = [
   {
-    id: 1000,
-    name: "Ram",
-    department: "BDG",
-    skills: ["React", "CSS"],
-    role: "Intern",
-  },
-  {
-    id: 1001,
+    id: 1006,
     name: "Sam",
     department: "FEED",
     skills: ["CSS"],
     role: "Intern",
   },
   {
-    id: 1002,
+    id: 1001,
     name: "Rahul",
     department: "Finance",
     skills: ["HTML"],
     role: "Intern",
   },
   {
-    id: 1003,
+    id: 1002,
     name: "Roy",
     department: "HR",
     skills: ["Angular"],
@@ -36,48 +29,57 @@ let employees = [
     role: "Intern",
   },
   {
-    id: 1005,
+    id: 1003,
     name: "Pam",
     department: "FEED",
     skills: ["CSS"],
     role: "Intern",
   },
   {
-    id: 1006,
+    id: 1005,
     name: "Pam",
     department: "FEED",
     skills: [""],
     role: "Intern",
   },
 ];
-localStorage.setItem("employees", JSON.stringify(employees));
+localStorage.setItem("employees", JSON.stringify(employeesDb));
 
 //Function to render the table containing employee details
 function renderTable(tableBody, employees) {
   let temp = "";
-  for (let employee of employees) {
-    temp += `<tr class="table-row"> 
+  if (employees.length == 0) {
+    temp =
+      "<tr><td class='table-no-data' colspan='5'>No data available</td></tr>";
+  } else {
+    for (let employee of employees) {
+      temp += `<tr class="table-row"> 
                   <td>${employee.id}</td>
                   <td>${employee.name}</td>
                   <td>${employee.department}</td>
                   <td>${employee.role}</td>
                   <td>
-                    <button>
+                    <button class="action-button-container">
                       <img
                         class="action-button"
                         src="./assets/images/edit_icon.svg"
                         alt=""
+                        data-action="edit"
+                        data-employee-id="${employee.id}"
                       />
                     </button>
-                    <button>
+                    <button class="action-button-container">
                       <img
                         class="action-button"
                         src="./assets/images/delete_icon.svg"
                         alt=""
+                        data-action="delete"
+                        data-employee-id="${employee.id}"
                       />
                     </button>
                   </td>
                 </tr>`;
+    }
   }
   tableBody.innerHTML = temp;
 }
@@ -130,7 +132,7 @@ function displayNewEmployeeFrom(overlay, newEmployeeForm) {
 }
 
 function filterTable(
-  e,
+  target,
   filteredEmployees,
   filterSkill,
   employees,
@@ -138,23 +140,23 @@ function filterTable(
 ) {
   let found;
   filteredEmployees = [];
-  console.log(e.target);
-  if (e.target.classList.contains("filter-checkbox")) {
-    if (!filterSkill.includes(e.target.value)) {
-      selectedSkills.innerHTML += `<div class="selected-skill-button ${e.target.value} flex">
-      <span>${e.target.value}</span>
-      <button class="skill-close"><img data-skill="${e.target.value}" src="./assets/images/skill_close_icon.svg" alt=""></button>
+  if (target.classList.contains("filter-checkbox")) {
+    if (!filterSkill.includes(target.value)) {
+      selectedSkills.innerHTML += `<div class="selected-skill-button ${target.value} flex">
+      <span>${target.value}</span>
+      <button type="button" class="skill-close"><img data-skill="${target.value}" src="./assets/images/skill_close_icon.svg" alt=""></button>
       </div>`;
-      filterSkill.push(e.target.value);
+      filterSkill.push(target.value);
     } else {
       selectedSkills.removeChild(
-        document.querySelector(`.selected-skill-button.${e.target.value}`)
+        document.querySelector(`.selected-skill-button.${target.value}`)
       );
-      filterSkill.splice(filterSkill.indexOf(e.target.value), 1);
+      filterSkill.splice(filterSkill.indexOf(target.value), 1);
     }
   }
   if (filterSkill.length == 0) {
-    return clearFilter(filteredEmployees, filterSkill, selectedSkills);
+    clearFilter(filteredEmployees, filterSkill, selectedSkills);
+    return employees;
   } else {
     for (let employee of employees) {
       found = 1;
@@ -172,7 +174,12 @@ function filterTable(
   return filteredEmployees;
 }
 
-function clearFilter(filteredEmployees, filterSkill, selectedSkills) {
+function clearFilter(
+  filteredEmployees,
+  filterSkill,
+  selectedSkills,
+  employees
+) {
   let checkboxes = document.querySelectorAll(".filter-checkbox");
   selectedSkills.innerHTML = "";
   for (let checkbox of checkboxes) {
@@ -185,54 +192,98 @@ function clearFilter(filteredEmployees, filterSkill, selectedSkills) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.querySelector(".overlay");
-  const button = document.querySelector(".add-new-user");
+  const addNewButton = document.querySelector(".add-new-user");
   const tableBody = document.querySelector(".table-body");
   const table = document.querySelector(".table");
-  const newEmployeeForm = document.querySelector(
-    ".new-employee-form-container"
-  );
-  button.addEventListener("click", () => {
-    displayNewEmployeeFrom(overlay, newEmployeeForm);
-  });
-  let employees = JSON.parse(localStorage.getItem("employees"));
-  let sortColumn = document.querySelector('[data-storage-key="id"]');
-  let columnFlag = {};
-  sortTable(sortColumn, employees, columnFlag);
-  renderTable(tableBody, employees);
-
-  const clearFilterButton = document.querySelector(".clear-filter-button");
+  const newEmployeeForm = document.querySelector(".new-employee-form");
   const filter = document.querySelector(".filter");
   const selectedSkills = document.querySelector(".selected-skills");
-  const filterSearch = document.querySelector(".filter-search");
   const filterOptionsContainer = document.querySelector(
     ".filter-options-container"
   );
-  filterSearch.addEventListener("click", () => {
-    filterOptionsContainer.classList.add("open");
-  });
+  const deleteModal = document.querySelector(".delete-employee");
+
+  let employees = JSON.parse(localStorage.getItem("employees"));
+  let sortColumn = document.querySelector('[data-storage-key="id"]');
+  let columnFlag = {};
   let dataToRender = employees;
   let filterSkill = [];
   let filteredEmployees = [];
-  filter.addEventListener("click", (e) => {
-    dataToRender = filterTable(
-      e,
-      filteredEmployees,
-      filterSkill,
-      employees,
-      selectedSkills
-    );
-    renderTable(tableBody, dataToRender);
+
+  sortTable(sortColumn, employees, columnFlag);
+  renderTable(tableBody, employees);
+
+  addNewButton.addEventListener("click", () => {
+    displayNewEmployeeFrom(overlay, newEmployeeForm);
   });
-  clearFilterButton.addEventListener("click", () => {
-    dataToRender = clearFilter(filteredEmployees, filterSkill, selectedSkills);
-    renderTable(tableBody, dataToRender);
+
+  filter.addEventListener("click", (e) => {
+    if (e.target.classList.contains("filter-search")) {
+      filterOptionsContainer.classList.add("open");
+      overlay.classList.add("open", "dropdown");
+      overlay.addEventListener("click", function overlayCloseHandler() {
+        filterOptionsContainer.classList.remove("open");
+        overlay.classList.remove("open", "dropdown");
+        overlay.removeEventListener("click", overlayCloseHandler);
+      });
+    } else if (e.target.classList.contains("clear-filter-icon")) {
+      filterOptionsContainer.classList.remove("open");
+      overlay.classList.remove("open", "dropdown");
+      dataToRender = clearFilter(
+        filteredEmployees,
+        filterSkill,
+        selectedSkills,
+        employees
+      );
+      renderTable(tableBody, dataToRender);
+    } else {
+      dataToRender = filterTable(
+        e.target,
+        filteredEmployees,
+        filterSkill,
+        employees,
+        selectedSkills
+      );
+      renderTable(tableBody, dataToRender);
+    }
+  });
+
+  selectedSkills.addEventListener("click", (e) => {
+    if (e.target.tagName === "IMG") {
+      let targetTag = document.getElementById(e.target.dataset.skill);
+      targetTag.click();
+    }
   });
 
   table.addEventListener("click", (e) => {
-    sortColumn = e.target.closest(".column-header");
-    if (sortColumn) {
-      sortTable(sortColumn, employees, columnFlag);
-      renderTable(tableBody, employees);
+    if (e.target.closest(".column-header")) {
+      sortColumn = e.target.closest(".column-header");
+      sortTable(sortColumn, dataToRender, columnFlag);
+      renderTable(tableBody, dataToRender);
+    } else if (e.target.dataset.action == "delete") {
+      deleteModal.classList.add("open");
+      overlay.classList.add("open");
+      deleteModal.addEventListener("click", (deleteEvent) => {
+        if (
+          deleteEvent.target.tagName === "BUTTON" ||
+          deleteEvent.target.parentElement.tagName === "BUTTON"
+        ) {
+          if (deleteEvent.target.value === "yes") {
+            let idToDelete = e.target.dataset.employeeId;
+            for (let index in employees) {
+              if (employees[index].id == idToDelete) {
+                employees.splice(index, 1);
+                localStorage.setItem("employees", JSON.stringify(employees));
+                employees = JSON.parse(localStorage.getItem("employees"));
+                renderTable(tableBody, employees);
+                break;
+              }
+            }
+          }
+          deleteModal.classList.remove("open");
+          overlay.classList.remove("open");
+        }
+      });
     }
   });
 });
