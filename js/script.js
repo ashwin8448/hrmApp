@@ -209,6 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let dataToRender = employees;
   let filterSkill = [];
   let filteredEmployees = [];
+  let idToDelete;
 
   sortTable(sortColumn, employees, columnFlag);
   renderTable(tableBody, employees);
@@ -263,27 +264,22 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (e.target.dataset.action == "delete") {
       deleteModal.classList.add("open");
       overlay.classList.add("open");
-      deleteModal.addEventListener("click", (deleteEvent) => {
-        if (
-          deleteEvent.target.tagName === "BUTTON" ||
-          deleteEvent.target.parentElement.tagName === "BUTTON"
-        ) {
-          if (deleteEvent.target.value === "yes") {
-            let idToDelete = e.target.dataset.employeeId;
-            for (let index in employees) {
-              if (employees[index].id == idToDelete) {
-                employees.splice(index, 1);
-                localStorage.setItem("employees", JSON.stringify(employees));
-                employees = JSON.parse(localStorage.getItem("employees"));
-                renderTable(tableBody, employees);
-                break;
-              }
-            }
-          }
-          deleteModal.classList.remove("open");
-          overlay.classList.remove("open");
-        }
-      });
+      idToDelete = parseInt(e.target.dataset.employeeId);
+    }
+  });
+
+  deleteModal.addEventListener("click", (deleteEvent) => {
+    if (
+      deleteEvent.target.tagName === "BUTTON" ||
+      deleteEvent.target.parentElement.tagName === "BUTTON"
+    ) {
+      if (deleteEvent.target.value === "yes") {
+        employees = employees.filter((employee) => employee.id !== idToDelete);
+        localStorage.setItem("employees", JSON.stringify(employees));
+        renderTable(tableBody, employees);
+      }
+      deleteModal.classList.remove("open");
+      overlay.classList.remove("open");
     }
   });
 });
