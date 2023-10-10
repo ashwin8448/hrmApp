@@ -1,3 +1,5 @@
+import { sortTable, filterTable, renderTable } from "./utility.js";
+
 //Storing few employee details to localStorage
 let employeesDb = [
   {
@@ -31,8 +33,8 @@ let employeesDb = [
   {
     id: 1003,
     name: "Pam",
-    department: "FEED",
-    skills: ["CSS"],
+    department: "BDG",
+    skills: ["CSS", "HTML"],
     role: "Intern",
   },
   {
@@ -45,149 +47,59 @@ let employeesDb = [
 ];
 localStorage.setItem("employees", JSON.stringify(employeesDb));
 
-//Function to render the table containing employee details
-function renderTable(tableBody, employees) {
-  let temp = "";
-  if (employees.length == 0) {
-    temp =
-      "<tr><td class='table-no-data' colspan='5'>No data available</td></tr>";
-  } else {
-    for (let employee of employees) {
-      temp += `<tr class="table-row"> 
-                  <td>${employee.id}</td>
-                  <td>${employee.name}</td>
-                  <td>${employee.department}</td>
-                  <td>${employee.role}</td>
-                  <td>
-                    <button class="action-button-container">
-                      <img
-                        class="action-button"
-                        src="./assets/images/edit_icon.svg"
-                        alt=""
-                        data-action="edit"
-                        data-employee-id="${employee.id}"
-                      />
-                    </button>
-                    <button class="action-button-container">
-                      <img
-                        class="action-button"
-                        src="./assets/images/delete_icon.svg"
-                        alt=""
-                        data-action="delete"
-                        data-employee-id="${employee.id}"
-                      />
-                    </button>
-                  </td>
-                </tr>`;
-    }
-  }
-  tableBody.innerHTML = temp;
-}
-
-//Function to sort table
-function sortTable(sortColumn, employees, columnFlag) {
-  let flag;
+const sortHandler = (sortColumn, employees, sortData) => {
   let key = sortColumn.dataset.storageKey;
-  if (!(key in columnFlag)) {
-    columnFlag[key] = 1;
-  }
-  flag = columnFlag[key];
-  //Sorting numbers
-  if (key === "id") {
-    employees.sort((a, b) => {
-      return (a[key] - b[key]) * flag;
-    });
-  }
-
-  //Sorting Strings
-  else {
-    employees.sort((a, b) => {
-      if (a[key].toLowerCase() > b[key].toLowerCase()) {
-        return 1 * flag;
-      } else if (a[key].toLowerCase() < b[key].toLowerCase()) {
-        return -1 * flag;
-      }
-      return 0;
-    });
-  }
-
-  //Setting flag for next sort order (asc/desc).
-  columnFlag[key] = columnFlag[key] * -1;
   let sortIcon = sortColumn.querySelector(".sort-icon");
   let sortIconOpen = document.querySelector(".sort-icon.open");
+
   if (sortIconOpen) {
+    sortIconOpen.style.transform = `rotateX(0deg)`;
     sortIconOpen.classList.remove("open");
   }
   sortIcon.classList.add("open");
-  if (columnFlag[key] == 1) {
-    sortIcon.style.transform = "rotateX(180deg)";
-  } else {
-    sortIcon.style.transform = "rotateX(0deg)";
-  }
-}
 
-function displayNewEmployeeFrom(overlay, newEmployeeForm) {
-  overlay.classList.add("open");
-  newEmployeeForm.classList.add("open");
-}
+  sortData.flag = key == sortData.previousKey ? sortData.flag * -1 : 1;
+  sortData.flag == 1
+    ? (sortIcon.style.transform = `rotateX(0deg)`)
+    : (sortIcon.style.transform = `rotateX(180deg)`);
 
-function filterTable(
-  target,
-  filteredEmployees,
-  filterSkill,
-  employees,
-  selectedSkills
-) {
-  let found;
-  filteredEmployees = [];
+  sortTable(employees, key, sortData.flag);
+  sortData.previousKey = key;
+};
+
+const filterHandler = (target, filterObj, employees, selectedSkills) => {
   if (target.classList.contains("filter-checkbox")) {
-    if (!filterSkill.includes(target.value)) {
+    if (!filterObj.skills.includes(target.value)) {
       selectedSkills.innerHTML += `<div class="selected-skill-button ${target.value} flex">
-      <span>${target.value}</span>
-      <button type="button" class="skill-close"><img data-skill="${target.value}" src="./assets/images/skill_close_icon.svg" alt=""></button>
-      </div>`;
-      filterSkill.push(target.value);
+        <span>${target.value}</span>
+        <button type="button" class="skill-close"><img data-skill="${target.value}" src="./assets/images/skill_close_icon.svg" alt=""></button>
+        </div>`;
+      filterObj.skills.push(target.value);
     } else {
       selectedSkills.removeChild(
         document.querySelector(`.selected-skill-button.${target.value}`)
       );
-      filterSkill.splice(filterSkill.indexOf(target.value), 1);
+      filterObj.skills.splice(filterObj.skills.indexOf(target.value), 1);
     }
   }
-  if (filterSkill.length == 0) {
-    clearFilter(filteredEmployees, filterSkill, selectedSkills);
-    return employees;
-  } else {
-    for (let employee of employees) {
-      found = 1;
-      for (let skill of filterSkill) {
-        if (!employee.skills.includes(skill)) {
-          found = 0;
-          break;
-        }
-      }
-      if (found == 1) {
-        filteredEmployees.push(employee);
-      }
-    }
-  }
-  return filteredEmployees;
-}
+  if (filterObj.skills.length == 0) {
+    clearFilter(filterObj, selectedSkills);
+  } else employees = filterTable(employees, filterObj);
+  return employees;
+};
 
-function clearFilter(
-  filteredEmployees,
-  filterSkill,
-  selectedSkills,
-  employees
-) {
+function clearFilter(filterObj, selectedSkills) {
   let checkboxes = document.querySelectorAll(".filter-checkbox");
   selectedSkills.innerHTML = "";
   for (let checkbox of checkboxes) {
     checkbox.checked = false;
   }
-  filterSkill.splice(0, filterSkill.length);
-  filteredEmployees.splice(0, filteredEmployees.length);
-  return employees;
+  filterObj.skills.splice(0, filterObj.skills.length);
+}
+
+function displayNewEmployeeFrom(overlay, newEmployeeForm) {
+  overlay.classList.add("open");
+  newEmployeeForm.classList.add("open");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -202,16 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
     ".filter-options-container"
   );
   const deleteModal = document.querySelector(".delete-employee");
-
   let employees = JSON.parse(localStorage.getItem("employees"));
   let sortColumn = document.querySelector('[data-storage-key="id"]');
-  let columnFlag = {};
   let dataToRender = employees;
-  let filterSkill = [];
-  let filteredEmployees = [];
+  let filterObj = { skills: [] };
   let idToDelete;
-
-  sortTable(sortColumn, employees, columnFlag);
+  let sortData = { previousKey: "", flag: 1 };
+  sortHandler(sortColumn, employees, sortData);
   renderTable(tableBody, employees);
 
   addNewButton.addEventListener("click", () => {
@@ -230,18 +139,13 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (e.target.classList.contains("clear-filter-icon")) {
       filterOptionsContainer.classList.remove("open");
       overlay.classList.remove("open", "dropdown");
-      dataToRender = clearFilter(
-        filteredEmployees,
-        filterSkill,
-        selectedSkills,
-        employees
-      );
+      dataToRender = employees;
+      clearFilter(filterObj, selectedSkills);
       renderTable(tableBody, dataToRender);
     } else {
-      dataToRender = filterTable(
+      dataToRender = filterHandler(
         e.target,
-        filteredEmployees,
-        filterSkill,
+        filterObj,
         employees,
         selectedSkills
       );
@@ -259,7 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
   table.addEventListener("click", (e) => {
     if (e.target.closest(".column-header")) {
       sortColumn = e.target.closest(".column-header");
-      sortTable(sortColumn, dataToRender, columnFlag);
+      sortHandler(sortColumn, employees, sortData);
+      // sortTable(sortColumn, dataToRender, columnFlag);
       renderTable(tableBody, dataToRender);
     } else if (e.target.dataset.action == "delete") {
       deleteModal.classList.add("open");
@@ -268,18 +173,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  deleteModal.addEventListener("click", (deleteEvent) => {
+  deleteModal.addEventListener("click", (e) => {
     if (
-      deleteEvent.target.tagName === "BUTTON" ||
-      deleteEvent.target.parentElement.tagName === "BUTTON"
+      e.target.tagName === "BUTTON" ||
+      e.target.parentElement.tagName === "BUTTON"
     ) {
-      if (deleteEvent.target.value === "yes") {
+      if (e.target.value === "yes") {
         employees = employees.filter((employee) => employee.id !== idToDelete);
         localStorage.setItem("employees", JSON.stringify(employees));
-        renderTable(tableBody, employees);
+        dataToRender = filterHandler(
+          e.target,
+          filterObj,
+          employees,
+          selectedSkills
+        );
+        renderTable(tableBody, dataToRender);
       }
       deleteModal.classList.remove("open");
       overlay.classList.remove("open");
     }
+    console.log(filterObj);
+    console.log(employees);
   });
 });
