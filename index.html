@@ -20,7 +20,7 @@
   <body>
     <header class="flex container">
       <h1><img class="logo" src="./assets/images/logo.png" alt="" /></h1>
-      <form class="search-bar flex" style="visibility: hidden">
+      <form class="search-bar flex upcoming">
         <input type="text" name="" id="" placeholder="Search" />
         <button type="button">
           <img
@@ -111,7 +111,7 @@
       </section>
       <section>
         <div class="table-options flex">
-          <div class="add-new-employee" style="visibility: hidden">
+          <div class="add-new-employee upcoming">
             <button type="button" class="primary-button add-new-user flex">
               <span>Add new user</span>
               <img
@@ -123,7 +123,7 @@
           </div>
 
           <div class="filter">
-            <form action="" class="search-bar flex">
+            <form action="" class="search-bar flex" autocomplete="off">
               <input
                 class="filter-search"
                 type="text"
@@ -136,47 +136,44 @@
                   alt=""
                 />
               </button>
-            </form>
-            <form
-              action=""
-              autocomplete="off"
-              class="flex filter-options-container"
-            >
-              <div class="filter-options flex">
-                <input
-                  class="filter-checkbox"
-                  type="checkbox"
-                  value="HTML"
-                  id="HTML"
-                />
-                <label for="HTML">HTML</label>
-              </div>
-              <div class="filter-options flex">
-                <input
-                  class="filter-checkbox"
-                  type="checkbox"
-                  value="CSS"
-                  id="CSS"
-                />
-                <label for="CSS">CSS</label>
-              </div>
-              <div class="filter-options flex">
-                <input
-                  class="filter-checkbox"
-                  type="checkbox"
-                  value="React"
-                  id="React"
-                />
-                <label for="React">React</label>
-              </div>
-              <div class="filter-options flex">
-                <input
-                  class="filter-checkbox"
-                  type="checkbox"
-                  value="Node"
-                  id="Node"
-                />
-                <label for="Node">Node</label>
+
+              <div class="flex filter-options-container">
+                <div class="filter-options flex">
+                  <input
+                    class="filter-checkbox"
+                    type="checkbox"
+                    value="HTML"
+                    id="HTML"
+                  />
+                  <label for="HTML">HTML</label>
+                </div>
+                <div class="filter-options flex">
+                  <input
+                    class="filter-checkbox"
+                    type="checkbox"
+                    value="CSS"
+                    id="CSS"
+                  />
+                  <label for="CSS">CSS</label>
+                </div>
+                <div class="filter-options flex">
+                  <input
+                    class="filter-checkbox"
+                    type="checkbox"
+                    value="React"
+                    id="React"
+                  />
+                  <label for="React">React</label>
+                </div>
+                <div class="filter-options flex">
+                  <input
+                    class="filter-checkbox"
+                    type="checkbox"
+                    value="Node"
+                    id="Node"
+                  />
+                  <label for="Node">Node</label>
+                </div>
               </div>
             </form>
           </div>
@@ -241,6 +238,6 @@
       </section>
     </main>
     <footer></footer>
-    <script src="./js/script.js" type="module"></script>
+    <script src="./js/main.js" type="module"></script>
   </body>
 </html>

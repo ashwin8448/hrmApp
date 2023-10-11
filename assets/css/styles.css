@@ -64,7 +64,7 @@ header.container {
   border-radius: 20px;
 }
 
-.search-bar input {
+.filter-search {
   border-radius: 0 0 0 20px;
   background-color: #262626;
   color: white;
@@ -264,12 +264,17 @@ input[type="checkbox"]:checked {
 
 .filter-options-container.open {
   visibility: visible;
-  max-height: 300px;
+  max-height: 150px;
   overflow: auto;
   color: white;
   background-color: #262626;
-  padding: 10px;
+  padding: 0 10px 10px 10px;
   box-sizing: border-box;
+  gap: 5px;
+}
+
+.filter-options{
+  gap: 5px;
 }
 
 .filter-options:hover {
@@ -330,4 +335,8 @@ input[type="checkbox"]:checked {
 
 .close-button-container{
   float: right;
+}
+
+.upcoming{
+  visibility: hidden;
 }
