@@ -5,10 +5,18 @@ import {
   overlay,
   filterOptionsContainer,
   filter,
-  selectedSkills, newEmployeeForm
+  selectedSkills,
+  newEmployeeForm,
+  newEmployee,
+  newEmployeeCloseButton,
 } from "./elements.js";
 import { displayTable } from "./displayTable.js";
-import { deleteHandler, sortHandler, filterHandler } from "./handlers.js";
+import {
+  deleteHandler,
+  sortHandler,
+  filterHandler,
+  addNewEmployeeHandler,
+} from "./handlers.js";
 import { setIdToDelete } from "./state.js";
 //Storing few employee details to localStorage
 let employeesDb = [
@@ -65,7 +73,20 @@ document.addEventListener("DOMContentLoaded", () => {
   addNewButton.addEventListener("click", () => {
     overlay.classList.add("open");
     newEmployeeForm.style.display = "block";
-    setTimeout(() => newEmployeeForm.classList.add("open"),200)
+    setTimeout(() => newEmployeeForm.classList.add("open"), 100);
+  });
+
+  newEmployee.addEventListener("submit", (e) => {
+    addNewEmployeeHandler(e);
+    overlay.classList.remove("open");
+    newEmployeeForm.classList.remove("open");
+    setTimeout(() => (newEmployeeForm.style.display = "none"), 500);
+  });
+
+  newEmployeeCloseButton.addEventListener("click", () => {
+    overlay.classList.remove("open");
+    newEmployeeForm.classList.remove("open");
+    setTimeout(() => (newEmployeeForm.style.display = "none"), 500);
   });
 
   table.addEventListener("click", (e) => {

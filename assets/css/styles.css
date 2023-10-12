@@ -212,31 +212,30 @@ New Employee Modal
   transform: translateX(-50%) translateY(-50%);
   z-index: 40;
   width: 0;
-  transition: .8s;
+  transition: 0.8s;
   opacity: 0;
 }
 
+legend {
+  font-weight: 800;
+}
+
 .new-employee-form.open {
-  width: 60%;
+  width: 31%;
   visibility: visible;
   opacity: 1;
 }
-
 
 .new-employee-form form {
   width: 100%;
   overflow: hidden;
 }
 
-
-
-
 .new-employee-form input {
   width: 100%;
   border-radius: 4px;
   padding: 5px;
 }
-
 
 fieldset {
   border: 0;
@@ -250,11 +249,10 @@ fieldset {
   justify-content: start;
   align-items: center;
   gap: 20px;
-
 }
 
 .new-employee-form .element label {
-  flex: 1;
+  flex: 0.4;
 }
 
 .new-employee-form .element input {

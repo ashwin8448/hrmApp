@@ -6,6 +6,7 @@ import {
   selectedSkills,
   filterOptionsContainer,
   checkboxes,
+  newEmployee,
 } from "./elements.js";
 import { idToDelete, setState, state, setSortIcon } from "./state.js";
 import { filterEmployees } from "./filter.js";
@@ -35,13 +36,13 @@ export const sortHandler = (e) => {
   displayTable();
 };
 
-function clearFilter() {
+const clearFilter = () => {
   selectedSkills.innerHTML = "";
   for (let checkbox of checkboxes) {
     checkbox.checked = false;
   }
   state.filterBy.skills.splice(0, state.filterBy.skills.length);
-}
+};
 
 export const filterHandler = (e) => {
   let target = e.target;
@@ -81,4 +82,21 @@ export const filterHandler = (e) => {
     } else filterEmployees();
     displayTable();
   }
+};
+
+export const addNewEmployeeHandler = (e) => {
+  e.preventDefault();
+  let tempEmployee = {};
+  tempEmployee.id = 1007;
+  tempEmployee.name = newEmployee["fname"].value + newEmployee["fname"].value;
+  tempEmployee.dateOfBirth = newEmployee["dob"].value;
+  tempEmployee.address = newEmployee["address"].value;
+  tempEmployee.phone = newEmployee["phone"].value;
+  tempEmployee.email = newEmployee["email"].value;
+  tempEmployee.dateOfJoining = newEmployee["doj"].value;
+  tempEmployee.department = newEmployee["department"].value;
+  tempEmployee.role = newEmployee["role"].value;
+  setEmployees([...employees, ...[tempEmployee]]);
+  localStorage.setItem("employees", JSON.stringify(employees));
+  displayTable();
 };

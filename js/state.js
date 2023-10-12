@@ -1,6 +1,6 @@
 export let state = {
   sortBy: "id",
-  filterBy: {skills:[]},
+  filterBy: { skills: [] },
   sortFlag: 1,
 };
 
