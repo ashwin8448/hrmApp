@@ -19,14 +19,20 @@
   </head>
   <body>
     <header class="flex container">
-      <h1><img class="logo" src="./assets/images/logo.png" alt="" /></h1>
-      <form class="search-bar flex upcoming">
-        <input type="text" name="" id="" placeholder="Search" />
+      <h1>
+        <img
+          class="logo"
+          src="./assets/images/logo.png"
+          alt="Application logo"
+        />
+      </h1>
+      <form name="search" class="search-bar flex upcoming">
+        <input type="text" name="name" placeholder="Search" />
         <button type="button">
           <img
             class="search-icon"
             src="./assets/images/search_icon.svg"
-            alt=""
+            alt="Search icon"
           />
         </button>
       </form>
@@ -40,7 +46,7 @@
             <img
               class="close-button"
               src="./assets/images/close_button_icon.svg"
-              alt=""
+              alt="New employee form close icon"
             />
           </button>
           <h3>Add new user</h3>
@@ -48,47 +54,46 @@
             <fieldset>
               <legend>Personal Details</legend>
               <div>
-                <label>First name : </label>
-                <input type="text" name="" id="" />
+                <label>First name: </label>
+                <input type="text" name="fname" />
               </div>
               <div>
-                <label>Last name : </label>
-                <input type="text" name="" id="" />
+                <label>Last name: </label>
+                <input type="text" name="lname" />
               </div>
               <div>
-                <label>Date of birth : </label>
-                <input type="text" name="" id="" />
+                <label>Date of birth: </label>
+                <input type="date" name="dob" />
               </div>
             </fieldset>
             <fieldset>
               <legend>Contact Details</legend>
-              <label>Address : </label>
-              <input type="text" name="" id="" />
+              <label>Address: </label>
+              <input type="text" name="address" />
               <br />
-              <label>Phone : </label>
-              <input type="text" name="" id="" />
+              <label>Phone: </label>
+              <input type="text" name="phone" />
               <br />
-              <label>Email : </label>
-              <input type="text" name="" id="" />
+              <label>Email: </label>
+              <input type="text" name="email" />
             </fieldset>
             <fieldset>
               <legend>Employment Details</legend>
-              <label>Date of joining : </label>
-              <input type="text" name="" id="" />
+              <label>Date of joining: </label>
+              <input type="date" name="doj" />
               <br />
-              <label>Role : </label>
-              <input type="text" name="" id="" />
+              <label>Role: </label>
+              <input type="text" name="role" />
               <br />
-              <label>Skills : </label>
-              <input type="text" name="" id="" />
+              <label>Skills: </label>
+              <input type="text" name="skills" />
             </fieldset>
             <fieldset>
-              <input class="primary-button" type="reset" name="" id="" />
+              <input class="primary-button" name="reset" type="reset" />
               <input
                 class="primary-button"
                 type="submit"
-                name=""
-                id=""
+                name="submit"
                 value="Submit"
               />
             </fieldset>
@@ -101,7 +106,7 @@
               <img
                 class="close-button"
                 src="./assets/images/close_button_icon.svg"
-                alt=""
+                alt="Delete employee modal close icon"
               />
             </button>
           </div>
@@ -121,13 +126,13 @@
               <img
                 class="add-new-user-icon"
                 src="./assets/images/add_user_icon.svg"
-                alt=""
+                alt="Add new user icon"
               />
             </button>
           </div>
 
           <div class="filter">
-            <form action="" class="search-bar flex" autocomplete="off">
+            <form class="search-bar flex" autocomplete="off">
               <input
                 class="filter-search"
                 type="text"
@@ -137,7 +142,7 @@
                 <img
                   class="clear-filter-icon"
                   src="./assets/images/clear_filter_icon.svg"
-                  alt=""
+                  alt="Clear filter icon"
                 />
               </button>
 
@@ -195,7 +200,7 @@
                     <img
                       class="sort-icon open"
                       src="./assets/images/ascending_order_icon.svg"
-                      alt=""
+                      alt="Sort indicator"
                     />
                   </div>
                 </th>
@@ -205,7 +210,7 @@
                     <img
                       class="sort-icon"
                       src="./assets/images/ascending_order_icon.svg"
-                      alt=""
+                      alt="Sort indicator"
                     />
                   </div>
                 </th>
@@ -215,7 +220,7 @@
                     <img
                       class="sort-icon"
                       src="./assets/images/ascending_order_icon.svg"
-                      alt=""
+                      alt="Sort indicator"
                     />
                   </div>
                 </th>
@@ -225,7 +230,7 @@
                     <img
                       class="sort-icon"
                       src="./assets/images/ascending_order_icon.svg"
-                      alt=""
+                      alt="Sort indicator"
                     />
                   </div>
                 </th>
