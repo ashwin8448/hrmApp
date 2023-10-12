@@ -10,7 +10,7 @@ export const filterEmployees = () => {
   filteredEmployees = filteredEmployees.filter((employee) => {
     result = 1;
     for (let criteria in state.filterBy) {
-      result *= filterObj[criteria].every((criteriaElement) => {
+      result *= state.filterBy[criteria].every((criteriaElement) => {
         return employee[criteria].includes(criteriaElement);
       });
       if (!result) {

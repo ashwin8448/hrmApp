@@ -10,3 +10,5 @@ export const filterOptionsContainer = document.querySelector(
 );
 export const deleteModal = document.querySelector(".delete-employee");
 export const filterSearch = document.querySelector(".filter-search");
+export const checkboxes = document.querySelectorAll(".filter-checkbox");
+  
