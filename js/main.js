@@ -5,7 +5,7 @@ import {
   overlay,
   filterOptionsContainer,
   filter,
-  selectedSkills,
+  selectedSkills, newEmployeeForm
 } from "./elements.js";
 import { displayTable } from "./displayTable.js";
 import { deleteHandler, sortHandler, filterHandler } from "./handlers.js";
@@ -64,7 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   addNewButton.addEventListener("click", () => {
     overlay.classList.add("open");
-    newEmployeeForm.classList.add("open");
+    newEmployeeForm.style.display = "block";
+    setTimeout(() => newEmployeeForm.classList.add("open"),200)
   });
 
   table.addEventListener("click", (e) => {

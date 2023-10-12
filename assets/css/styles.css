@@ -198,29 +198,67 @@ New Employee Modal
 }
 
 .new-employee-form {
+  max-height: 90vh;
+  overflow: auto;
   display: none;
+  visibility: hidden;
   background-color: rgb(0, 0, 0);
-  padding: 10px;
-}
-
-.new-employee-form input {
-  width: 200px;
-}
-
-.new-employee-form.open {
-  display: block;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px #ffffff;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   z-index: 40;
-  width: 650px;
+  width: 0;
+  transition: .8s;
+  opacity: 0;
 }
+
+.new-employee-form.open {
+  width: 60%;
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.new-employee-form form {
+  width: 100%;
+  overflow: hidden;
+}
+
+
+
+
+.new-employee-form input {
+  width: 100%;
+  border-radius: 4px;
+  padding: 5px;
+}
+
 
 fieldset {
   border: 0;
   padding: 15px 0;
   flex-direction: column;
+  gap: 10px;
+}
+
+.new-employee-form .element {
+  width: 100%;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+
+}
+
+.new-employee-form .element label {
+  flex: 1;
+}
+
+.new-employee-form .element input {
+  flex: 1;
 }
 
 .close-button {
