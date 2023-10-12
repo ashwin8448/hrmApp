@@ -56,6 +56,11 @@ header.container {
   width: 150px;
 }
 
+input {
+  background-color: #262626;
+  color: white;
+}
+
 .search-bar {
   background-color: #262626;
   width: 250px;
@@ -66,7 +71,6 @@ header.container {
 
 .filter-search {
   border-radius: 0 0 0 20px;
-  background-color: #262626;
   color: white;
   width: 90%;
   padding: 0 0 0 10px;
@@ -74,7 +78,6 @@ header.container {
 }
 
 .search-bar input::placeholder {
-  color: white;
   opacity: 1;
 }
 
@@ -179,7 +182,7 @@ New Employee Modal
   background-color: rgb(0, 0, 0);
 }
 
-.delete-header{
+.delete-header {
   justify-content: space-between;
 }
 
@@ -197,6 +200,11 @@ New Employee Modal
 .new-employee-form {
   display: none;
   background-color: rgb(0, 0, 0);
+  padding: 10px;
+}
+
+.new-employee-form input {
+  width: 200px;
 }
 
 .new-employee-form.open {
@@ -206,6 +214,13 @@ New Employee Modal
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   z-index: 40;
+  width: 650px;
+}
+
+fieldset {
+  border: 0;
+  padding: 15px 0;
+  flex-direction: column;
 }
 
 .close-button {
@@ -273,7 +288,7 @@ input[type="checkbox"]:checked {
   gap: 5px;
 }
 
-.filter-options{
+.filter-options {
   gap: 5px;
 }
 
@@ -333,10 +348,10 @@ input[type="checkbox"]:checked {
   width: 80px;
 }
 
-.close-button-container{
+.close-button-container {
   float: right;
 }
 
-.upcoming{
+.upcoming {
   visibility: hidden;
 }
