@@ -10,6 +10,12 @@ import {
 } from "./elements.js";
 import { idToDelete, setState, state, setSortIcon } from "./state.js";
 import { filterEmployees } from "./filter.js";
+import {
+  blankValidation,
+  emailValidation,
+  phoneValidation,
+  nameValidation,
+} from "./formValidation.js";
 
 export const deleteHandler = (e) => {
   if (
@@ -86,7 +92,7 @@ export const filterHandler = (e) => {
 
 export const addNewEmployeeHandler = (e) => {
   e.preventDefault();
-  let tempEmployee = {};
+  let tempEmployee = { skills: [] };
   tempEmployee.id = 1007;
   tempEmployee.name = newEmployee["fname"].value + newEmployee["fname"].value;
   tempEmployee.dateOfBirth = newEmployee["dob"].value;
@@ -96,7 +102,32 @@ export const addNewEmployeeHandler = (e) => {
   tempEmployee.dateOfJoining = newEmployee["doj"].value;
   tempEmployee.department = newEmployee["department"].value;
   tempEmployee.role = newEmployee["role"].value;
+  tempEmployee.skills.push(newEmployee["skills"].value);
   setEmployees([...employees, ...[tempEmployee]]);
   localStorage.setItem("employees", JSON.stringify(employees));
+  console.log(employees);
   displayTable();
+};
+
+export const validationHandler = (e) => {
+  if (e.target.dataset.type) {
+    try {
+      blankValidation(e.target.value);
+      switch (e.target.dataset.type) {
+        case "name":
+          nameValidation(e.target.value);
+          break;
+        case "phone":
+          phoneValidation(e.target.value);
+          break;
+        case "email":
+          emailValidation(e.target.value);
+          break;
+      }
+      e.target.nextElementSibling.classList.remove("open")
+    } catch (error) {
+      e.target.nextElementSibling.classList.add("open")
+      e.target.nextElementSibling.innerHTML = error;
+    }
+  }
 };

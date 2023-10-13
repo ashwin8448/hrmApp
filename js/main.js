@@ -16,6 +16,7 @@ import {
   sortHandler,
   filterHandler,
   addNewEmployeeHandler,
+  validationHandler,
 } from "./handlers.js";
 import { setIdToDelete } from "./state.js";
 //Storing few employee details to localStorage
@@ -73,20 +74,28 @@ document.addEventListener("DOMContentLoaded", () => {
   addNewButton.addEventListener("click", () => {
     overlay.classList.add("open");
     newEmployeeForm.style.display = "block";
+    let currentDate = new Date();
+    newEmployee["dob"].max = `${currentDate.getFullYear() - 18}-${
+      currentDate.getMonth() + 1
+    }-${currentDate.getDate()}`;
     setTimeout(() => newEmployeeForm.classList.add("open"), 100);
   });
+
+  newEmployee.addEventListener("blur", validationHandler, true);
 
   newEmployee.addEventListener("submit", (e) => {
     addNewEmployeeHandler(e);
     overlay.classList.remove("open");
     newEmployeeForm.classList.remove("open");
     setTimeout(() => (newEmployeeForm.style.display = "none"), 500);
+    newEmployee.reset();
   });
 
   newEmployeeCloseButton.addEventListener("click", () => {
     overlay.classList.remove("open");
     newEmployeeForm.classList.remove("open");
     setTimeout(() => (newEmployeeForm.style.display = "none"), 500);
+    newEmployee.reset();
   });
 
   table.addEventListener("click", (e) => {

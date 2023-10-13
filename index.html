@@ -50,58 +50,88 @@
             />
           </button>
           <h3>Add new user</h3>
-          <form name="new-employee" autocomplete="off">
+          <form class="new-employee" name="new-employee" autocomplete="off">
             <fieldset class="flex">
               <legend>Personal Details</legend>
               <div class="flex element">
                 <label>First name:</label>
-                <input type="text" name="fname" />
+                <div class="flex-column">
+                  <input type="text" name="fname" data-type="name" />
+                  <p class="error-placeholder"></p>
+                </div>
               </div>
               <div class="flex element">
                 <label>Last name:</label>
-                <input type="text" name="lname" />
+                <div class="flex-column">
+                  <input type="text" name="lname" data-type="name" />
+                  <p class="error-placeholder"></p>
+                </div>
               </div>
               <div class="flex element">
                 <label>Date of birth:</label>
-                <input type="date" name="dob" />
+                <div class="flex-column">
+                  <input type="date" name="dob" data-type="date" />
+                  <p class="error-placeholder"></p>
+                </div>
               </div>
             </fieldset>
             <fieldset class="flex">
               <legend>Contact Details</legend>
               <div class="flex element">
                 <label>Address:</label>
-                <input type="text" name="address" />
+                <div class="flex-column">
+                  <input type="text" name="address" data-type="address" />
+                  <p class="error-placeholder"></p>
+                </div>
               </div>
               <div class="flex element">
                 <label>Phone:</label>
-                <input type="text" name="phone" />
+                <div class="flex-column">
+                  <input type="tel" name="phone" data-type="phone" />
+                  <p class="error-placeholder"></p>
+                </div>
               </div>
               <div class="flex element">
                 <label>Email:</label>
-                <input type="text" name="email" />
+                <div class="flex-column">
+                  <input type="text" name="email" data-type="email" />
+                  <p class="error-placeholder"></p>
+                </div>
               </div>
             </fieldset>
             <fieldset class="flex">
               <legend>Employment Details</legend>
               <div class="flex element">
                 <label>Date of joining:</label>
-                <input type="date" name="doj" />
+                <div class="flex-column">
+                  <input type="date" name="doj" data-type="date" />
+                  <p class="error-placeholder"></p>
+                </div>
               </div>
               <div class="flex element">
                 <label>Department:</label>
-                <input type="text" name="department" />
+                <div class="flex-column">
+                  <input type="text" name="department" data-type="department" />
+                  <p class="error-placeholder"></p>
+                </div>
               </div>
               <div class="flex element">
                 <label>Role:</label>
-                <input type="text" name="role" />
+                <div class="flex-column">
+                  <input type="text" name="role" data-type="role" />
+                  <p class="error-placeholder"></p>
+                </div>
               </div>
               <div class="flex element">
                 <label>Skills:</label>
-                <input type="text" name="skills" />
+                <div class="flex-column">
+                  <input type="text" name="skills" data-type="skills" />
+                  <p class="error-placeholder"></p>
+                </div>
               </div>
             </fieldset>
             <fieldset>
-              <input class="primary-button" name="reset" type="reset" />
+              <input class="primary-button" type="reset" />
               <input
                 class="primary-button"
                 type="submit"
@@ -211,7 +241,11 @@
             <thead class="table-header">
               <tr>
                 <th>
-                  <div class="column-header flex" data-storage-key="id">
+                  <div
+                    title="Click to sort"
+                    class="column-header flex"
+                    data-storage-key="id"
+                  >
                     <h3>Employee ID</h3>
                     <img
                       class="sort-icon open"
@@ -221,7 +255,11 @@
                   </div>
                 </th>
                 <th>
-                  <div class="column-header flex" data-storage-key="name">
+                  <div
+                    title="Click to sort"
+                    class="column-header flex"
+                    data-storage-key="name"
+                  >
                     <h3>Name</h3>
                     <img
                       class="sort-icon"
@@ -231,7 +269,11 @@
                   </div>
                 </th>
                 <th>
-                  <div class="column-header flex" data-storage-key="department">
+                  <div
+                    title="Click to sort"
+                    class="column-header flex"
+                    data-storage-key="department"
+                  >
                     <h3>Department</h3>
                     <img
                       class="sort-icon"
@@ -241,7 +283,11 @@
                   </div>
                 </th>
                 <th>
-                  <div class="column-header flex" data-storage-key="role">
+                  <div
+                    title="Click to sort"
+                    class="column-header flex"
+                    data-storage-key="role"
+                  >
                     <h3>Role</h3>
                     <img
                       class="sort-icon"

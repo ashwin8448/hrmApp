@@ -136,6 +136,21 @@ tr {
   cursor: pointer;
 }
 
+.error-placeholder{
+  color: red;
+  visibility: hidden;
+}
+
+.error-placeholder.open{
+  color: red;
+  visibility: visible;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
 td {
   padding: 10px;
 }
@@ -245,8 +260,8 @@ fieldset {
 }
 
 .new-employee-form .element {
-  width: 100%;
-  justify-content: start;
+  width: 97%;
+  justify-content: space-between;
   align-items: center;
   gap: 20px;
 }

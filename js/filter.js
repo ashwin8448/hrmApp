@@ -11,6 +11,7 @@ export const filterEmployees = () => {
     result = 1;
     for (let criteria in state.filterBy) {
       result *= state.filterBy[criteria].every((criteriaElement) => {
+        console.log(employee[criteria]);
         return employee[criteria].includes(criteriaElement);
       });
       if (!result) {
