@@ -1,0 +1,87 @@
+{
+  "employeeDetails": {
+    "1000": {
+      "fname": "JacobA",
+      "lname": "RoyA",
+      "dob": "1111-01-01",
+      "address": "ABC1",
+      "phone": "0123456781",
+      "email": "a1@y.com",
+      "doj": "1111-01-02",
+      "department": "BDG",
+      "role": "Intern",
+      "skills": ["HTML", "CSS"]
+    },
+    "1001": {
+      "fname": "JacobB",
+      "lname": "RoyB",
+      "dob": "1111-01-03",
+      "address": "ABC2",
+      "phone": "0123456782",
+      "email": "a2@y.com",
+      "doj": "1111-01-04",
+      "department": "Accounts",
+      "role": "Intern",
+      "skills": ["CSS"]
+    },
+    "1002": {
+      "fname": "JacobC",
+      "lname": "RoyC",
+      "dob": "1111-01-05",
+      "address": "ABC3",
+      "phone": "0123456783",
+      "email": "a3@y.com",
+      "doj": "1111-01-06",
+      "department": "HR",
+      "role": "Intern",
+      "skills": ["HTML", "CSS", "React"]
+    },
+    "1003": {
+      "fname": "JacobD",
+      "lname": "RoyD",
+      "dob": "1111-01-07",
+      "address": "ABC4",
+      "phone": "0123456784",
+      "email": "a4@y.com",
+      "doj": "1111-01-08",
+      "department": "BDG",
+      "role": "Intern",
+      "skills": ["React", "Node"]
+    }
+  },
+  "skills": {
+    "SK001": "HTML",
+    "SK002": "CSS",
+    "SK003": "Vue.js",
+    "SK004": "Node.js",
+    "SK005": "JavaScript",
+    "SK006": "Angular.js",
+    "SK007": "React",
+    "SK008": "Adobe XD",
+    "SK009": "GIT",
+    "SK010": "Wordpress"
+  },
+  "department": {
+    "DEPT001": "BDG",
+    "DEPT002": "Accounts",
+    "DEPT003": "Human Resource",
+    "DEPT004": "Sales",
+    "DEPT005": "Software Development",
+    "DEPT006": "Research and Development"
+  },
+  "roles": {
+    "R001": "Intern",
+    "R002": "Software Engineer",
+    "R003": "Lead Engineer",
+    "R004": "Business Analyst",
+    "R005": "Architect"
+  },
+  "departmentRole": {
+    "DEPT001": ["R001", "R004"],
+    "DEPT002": ["R001"],
+    "DEPT003": ["R001"],
+    "DEPT004": ["R001"],
+    "DEPT005": ["R001", "R002", "R003", "R005"],
+    "DEPT006": ["R001"]
+  }
+}

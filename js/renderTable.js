@@ -9,14 +9,23 @@ export const renderTable = () => {
   } else {
     for (let employee of filteredEmployees) {
       temp += `<tr class="table-row"> 
-                      <td>${employee.id}</td>
-                      <td>${employee.name}</td>
+                      <td class="employee-id">${employee.id}</td>
+                      <td>${employee.fname} ${employee.lname}</td>
                       <td>${employee.department}</td>
                       <td>${employee.role}</td>
                       <td>
+                      <button class="action-button-container">
+                      <img
+                        class="action-button"
+                        src="./assets/images/view_user_icon.svg"
+                        alt=""
+                        data-action="view"
+                        data-employee-id="${employee.id}"
+                      />
+                    </button>
                         <button class="action-button-container">
                           <img
-                            class="action-button upcoming"
+                            class="action-button"
                             src="./assets/images/edit_icon.svg"
                             alt=""
                             data-action="edit"

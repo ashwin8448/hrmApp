@@ -1,4 +1,4 @@
-import { newEmployee } from "./elements.js";
+import { newEmployeeForm } from "./elements.js";
 
 export const blankValidation = (input) => {
   if (input == "") throw "This field cannot be left blank.";
@@ -6,7 +6,7 @@ export const blankValidation = (input) => {
 };
 
 export const nameValidation = (input) => {
-  if (!/^[A-Za-z\s]+$/.test(input)) throw "Invalid name.";
+  if (!/^[A-Za-z\s]+$/.test(input)) throw "Name can contain only alphabets.";
   return true;
 };
 
@@ -20,6 +20,26 @@ export const phoneValidation = (input) => {
   return true;
 };
 
-export const submitValidation=(input)=>{
+export const submitValidation = () => {
+  newEmployeeForm.querySelectorAll("input[data-type], select").forEach((tag) => {
+    tag.focus();
+    tag.blur();
+  });
 
-}
+  let anyErrorInput = document.querySelector(".error-placeholder.open");
+  if (anyErrorInput) {
+    anyErrorInput.previousElementSibling.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+    anyErrorInput.previousElementSibling.focus();
+    return false;
+  }
+  return true;
+};
+
+export const validationReset = () => {
+  newEmployeeForm.querySelectorAll(".error-placeholder").forEach((tag) => {
+    tag.classList.remove("open");
+  });
+};
