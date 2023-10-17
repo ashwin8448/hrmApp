@@ -3,7 +3,7 @@ import { filteredEmployees } from "./filter.js";
 //Function to render table details
 export const renderTable = () => {
   let temp = "";
-  if (filteredEmployees.length == 0) {
+  if (!filteredEmployees.length) {
     temp =
       "<tr><td class='table-no-data' colspan='5'>No data available</td></tr>";
   } else {

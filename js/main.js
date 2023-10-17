@@ -8,7 +8,6 @@ import {
   selectedSkills,
   newEmployeeFormContainer,
   newEmployeeForm,
-  newEmployeeCloseButton,
   viewEmployee,
   nameSearch,
 } from "./elements.js";
@@ -130,13 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
   newEmployeeForm.addEventListener("reset", (e) => {
     validationReset();
   });
-
-  // newEmployeeCloseButton.addEventListener("click", () => {
-  //   overlay.classList.remove("open");
-  //   newEmployeeFormContainer.classList.remove("open");
-  //   setTimeout(() => (newEmployeeFormContainer.style.display = "none"), 500);
-  //   newEmployeeForm.reset();
-  // });
 
   table.addEventListener("click", (e) => {
     if (e.target.closest(".column-header")) {
