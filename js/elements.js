@@ -12,6 +12,7 @@ export const filterOptionsContainer = document.querySelector(
 );
 export const deleteModal = document.querySelector(".delete-employee");
 export const filterSearch = document.querySelector(".filter-search");
+export const filterForm = document.forms["filter-search"];
 export const checkboxes = document.querySelectorAll(".filter-checkbox");
 export const newEmployeeForm = document.forms["new-employee-form"];
 export const newEmployeeCloseButton = document.querySelector(".close-button");
@@ -19,6 +20,7 @@ export const toast = document.querySelector(".toast");
 export const confirmBox = document.querySelector(".confirm-box");
 export const viewEmployee = document.querySelector(".view-employee-container");
 export const nameSearch = document.forms["search"];
-export const totalPages = document.querySelector(".total-pages")
-export const paginationConatiner = document.querySelector(".pagination")
+export const totalPages = document.querySelector(".total-pages");
+export const paginationConatiner = document.querySelector(".pagination");
 export const pageCustomInput = document.querySelector(".custom-input");
+export const paginationForm = document.forms["pagination"];

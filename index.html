@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./assets/css/normalize.css" />
     <link rel="stylesheet" href="./assets/css/styles.css" />
   </head>
-  <body>
+  <body class="flex-column">
     <header class="flex container">
       <h1>
         <img
@@ -35,7 +35,7 @@
         />
         <button type="button">
           <img
-            class="search-icon"
+            class="search-icon icon"
             src="./assets/images/search_icon.svg"
             alt="Search icon"
           />
@@ -43,7 +43,7 @@
       </form>
     </header>
 
-    <main class="container">
+    <main class="container flex-column">
       <section class="toast-container">
         <div class="toast"></div>
       </section>
@@ -52,7 +52,7 @@
         <div class="new-employee-form-container modal">
           <button class="close-button-container">
             <img
-              class="close-button"
+              class="close-button icon"
               src="./assets/images/close_button_icon.svg"
               alt="New employee form close icon"
             />
@@ -168,7 +168,7 @@
         <div class="view-employee-container modal">
           <button class="close-button-container">
             <img
-              class="close-button"
+              class="close-button icon"
               src="./assets/images/close_button_icon.svg"
               alt="New employee form close icon"
             />
@@ -187,7 +187,7 @@
         <div class="delete-employee modal">
           <button class="close-button-container">
             <img
-              class="close-button"
+              class="close-button icon"
               src="./assets/images/close_button_icon.svg"
               alt="Delete employee modal close icon"
             />
@@ -209,7 +209,7 @@
             <button type="button" class="primary-button add-new-user flex">
               <span>Add new user</span>
               <img
-                class="add-new-user-icon"
+                class="add-new-user-icon icon"
                 src="./assets/images/add_user_icon.svg"
                 alt="Add new user icon"
               />
@@ -229,7 +229,7 @@
               />
               <button type="button" class="clear-filter-button flex">
                 <img
-                  class="clear-filter-icon"
+                  class="clear-filter-icon icon"
                   src="./assets/images/clear_filter_icon.svg"
                   alt="Clear filter icon"
                 />
@@ -291,7 +291,7 @@
                   >
                     <h3>Employee ID</h3>
                     <img
-                      class="sort-icon open"
+                      class="sort-icon open icon"
                       src="./assets/images/ascending_order_icon.svg"
                       alt="Sort indicator"
                     />
@@ -305,7 +305,7 @@
                   >
                     <h3>Name</h3>
                     <img
-                      class="sort-icon"
+                      class="sort-icon icon"
                       src="./assets/images/ascending_order_icon.svg"
                       alt="Sort indicator"
                     />
@@ -319,7 +319,7 @@
                   >
                     <h3>Department</h3>
                     <img
-                      class="sort-icon"
+                      class="sort-icon icon"
                       src="./assets/images/ascending_order_icon.svg"
                       alt="Sort indicator"
                     />
@@ -351,20 +351,46 @@
         </div>
       </section>
       <section class="pagination flex">
-        <button class="start page-controls" data-go-to="start">Start</button>
-        <button class="previous page-controls" data-go-to="previous">
-          Previous
+        <button class="page-controls" data-go-to="start">
+          <img
+            src="./assets/images/end_icon.svg"
+            class="back icon"
+            alt="start icon"
+          />
         </button>
-        <form name="pagination" class="custom">
-          <input class="custom-input" type="number" value="1" min="1" autocomplete="off"/>
+        <button class="page-controls" data-go-to="previous">
+          <img
+            src="./assets/images/next_icon.svg"
+            class="back icon"
+            alt="previous icon"
+          />
+        </button>
+        <form name="pagination" class="custom" novalidate>
+          <input
+            class="custom-input"
+            type="number"
+            value="1"
+            min="1"
+            autocomplete="off"
+            data-type="page"
+            name="page-number"
+          />
           <span class="total-pages"></span>
         </form>
-        <button class="next page-controls" data-go-to="next">Next</button>
-        <button class="end page-controls" data-go-to="end">End</button>
+        <button class="page-controls" data-go-to="next">
+          <img
+            class="icon"
+            src="./assets/images/next_icon.svg"
+            alt="next icon"
+          />
+        </button>
+        <button class="page-controls" data-go-to="end">
+          <img class="icon" src="./assets/images/end_icon.svg" alt="end icon" />
+        </button>
       </section>
     </main>
     <footer>
-      <p class="footer-content flex">A QBurst FEED fresher's product.</p>
+      <p class="footer-content flex">A FEED fresher's product.</p>
     </footer>
     <script src="./js/main.js" type="module"></script>
   </body>

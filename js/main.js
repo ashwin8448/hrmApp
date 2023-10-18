@@ -12,6 +12,8 @@ import {
   nameSearch,
   paginationConatiner,
   pageCustomInput,
+  paginationForm,
+  filterForm,
 } from "./elements.js";
 import { displayTable } from "./displayTable.js";
 import {
@@ -26,8 +28,8 @@ import {
   setIdToDelete,
   getId,
   state,
-  setTotalPages,
   pagination,
+  changePageNumber,
 } from "./state.js";
 import { submitValidation, validationReset } from "./formValidation.js";
 import { toastHandler } from "./toast.js";
@@ -94,7 +96,7 @@ localStorage.setItem("employees", JSON.stringify(employeesDb));
 
 document.addEventListener("DOMContentLoaded", () => {
   //Display table on load, sorted by id.
-  displayTable(0);
+  displayTable();
   addNewButton.addEventListener("click", () => {
     newEmployeeForm.dataset.mode = "new";
     newEmployeeFormContainer.querySelector(".new-form").style.display = "block";
@@ -173,6 +175,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   filter.addEventListener("click", filterHandler);
 
+  filterForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
+
   document.body.addEventListener("click", (e) => {
     if (!e.target.closest(".filter")) {
       filterOptionsContainer.classList.remove("open");
@@ -181,10 +187,11 @@ document.addEventListener("DOMContentLoaded", () => {
       overlay.classList.remove("open");
       e.target.closest(".modal").classList.remove("open");
       setTimeout(() => (newEmployeeFormContainer.style.display = "none"), 500);
+      console.log();
       if (
         e.target
           .closest(".modal")
-          .classList.contains(".new-employee-form-container")
+          .classList.contains("new-employee-form-container")
       )
         newEmployeeForm.reset();
     }
@@ -204,9 +211,13 @@ document.addEventListener("DOMContentLoaded", () => {
     displayTable();
   });
 
+  nameSearch.addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
+
   paginationConatiner.addEventListener("click", (e) => {
-    if (e.target.dataset.goTo) {
-      switch (e.target.dataset.goTo) {
+    if (e.target.closest(".page-controls").dataset.goTo) {
+      switch (e.target.closest(".page-controls").dataset.goTo) {
         case "start":
           pageCustomInput.value = 1;
           break;
@@ -229,13 +240,15 @@ document.addEventListener("DOMContentLoaded", () => {
       displayTable();
     }
   });
-//working here
-  pageCustomInput.addEventListener("click", (e) => {
+
+  pageCustomInput.addEventListener("blur", (e) => {
+    changePageNumber(e.target);
     displayTable();
   });
 
-  document.forms["pagination"].addEventListener("submit", (e) => {
+  paginationForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    changePageNumber(e.target["page-number"]);
     displayTable();
   });
 });

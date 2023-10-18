@@ -1,4 +1,5 @@
-import { newEmployeeForm } from "./elements.js";
+import { newEmployeeForm, paginationForm, totalPages } from "./elements.js";
+import { pagination } from "./state.js";
 
 export const blankValidation = (input) => {
   if (input == "") throw "This field cannot be left blank.";
@@ -21,10 +22,12 @@ export const phoneValidation = (input) => {
 };
 
 export const submitValidation = () => {
-  newEmployeeForm.querySelectorAll("input[data-type], select").forEach((tag) => {
-    tag.focus();
-    tag.blur();
-  });
+  newEmployeeForm
+    .querySelectorAll("input[data-type], select")
+    .forEach((tag) => {
+      tag.focus();
+      tag.blur();
+    });
 
   let anyErrorInput = document.querySelector(".error-placeholder.open");
   if (anyErrorInput) {
@@ -42,4 +45,8 @@ export const validationReset = () => {
   newEmployeeForm.querySelectorAll(".error-placeholder").forEach((tag) => {
     tag.classList.remove("open");
   });
+};
+
+export const paginationValidation = () => {
+  paginationForm;
 };

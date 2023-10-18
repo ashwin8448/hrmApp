@@ -27,10 +27,15 @@ export const getId = () => {
 };
 
 export let pagination = {
-  rowsPerPage: 2,
+  rowsPerPage: 4,
   totalPages: 0,
 };
 
 export const setTotalPages = (numerOfRecords) => {
   pagination.totalPages = Math.ceil(numerOfRecords / pagination.rowsPerPage);
+};
+
+export const changePageNumber = (tag) => {
+  if (tag.value > pagination.totalPages) tag.value = pagination.totalPages;
+  else if (tag.value < 1) tag.value = 1;
 };
