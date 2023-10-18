@@ -97,7 +97,7 @@ export const filterHandler = (e) => {
       if (!state.filterBy.skills.includes(target.value)) {
         selectedSkills.innerHTML += `<div class="selected-skill-button ${target.value} flex">
             <span>${target.value}</span>
-            <button type="button" class="skill-close"><img data-skill="${target.value}" src="./assets/images/close_button_icon.svg" alt=""></button>
+            <button type="button" class="skill-close"><img data-skill="${target.value}" src="./assets/images/close_button_icon.svg" alt="close icon"></button>
             </div>`;
         state.filterBy.skills.push(target.value);
       } else {

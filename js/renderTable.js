@@ -18,7 +18,7 @@ export const renderTable = () => {
                       <img
                         class="action-button"
                         src="./assets/images/view_user_icon.svg"
-                        alt=""
+                        alt="view details icon"
                         data-action="view"
                         data-employee-id="${employee.id}"
                       />
@@ -27,7 +27,7 @@ export const renderTable = () => {
                           <img
                             class="action-button"
                             src="./assets/images/edit_icon.svg"
-                            alt=""
+                            alt="edit details icon"
                             data-action="edit"
                             data-employee-id="${employee.id}"
                           />
@@ -36,7 +36,7 @@ export const renderTable = () => {
                           <img
                             class="action-button"
                             src="./assets/images/delete_icon.svg"
-                            alt=""
+                            alt="delete employee icon"
                             data-action="delete"
                             data-employee-id="${employee.id}"
                           />
