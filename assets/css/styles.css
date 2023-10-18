@@ -252,7 +252,7 @@ New Employee Modal
   transform: translateX(-50%) translateY(-50%);
   z-index: 40;
   width: 0;
-  transition: 0.8s;
+  transition: 0.4s;
   opacity: 0;
 }
 
@@ -262,58 +262,19 @@ New Employee Modal
   opacity: 1;
 }
 
+/* .delete-employee {
+  box-sizing: border-box;
+  height: 190px;
+}
+
+.view-employee-container {
+  height: 400px;
+} */
+
 .view-employee-container.open,
 .delete-employee.open {
   width: 25%;
 }
-
-/* .new-employee-form-container {
-  max-height: 90vh;
-  overflow: auto;
-  display: none;
-  visibility: hidden;
-  padding: 15px;
-  border-radius: 15px;
-  box-shadow: 0px 0px 10px #000000;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  z-index: 40;
-  width: 0;
-  transition: 0.8s;
-  opacity: 0;
-}
-
-.new-employee-form-container.open {
-  width: 50%;
-  visibility: visible;
-  opacity: 1;
-}
-
-.view-employee-container {
-  max-height: 90vh;
-  overflow: auto;
-  display: none;
-  visibility: hidden;
-  padding: 15px;
-  border-radius: 15px;
-  box-shadow: 0px 0px 10px #000000;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  z-index: 40;
-  width: 0;
-  transition: 0.8s;
-  opacity: 0;
-}
-
-.view-employee-container.open {
-  width: 50%;
-  visibility: visible;
-  opacity: 1;
-} */
 
 .new-employee-form-container input,
 select {

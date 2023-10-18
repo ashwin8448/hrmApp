@@ -8,7 +8,7 @@ export const displayTable = () => {
   filterEmployees();
   setTotalPages(filteredEmployees.length);
   if (Number(pageCustomInput.value) > pagination.totalPages) {
-    pageCustomInput.value = pagination.totalPages;
+    pageCustomInput.value = pagination.totalPages || 1;
   }
   sortEmployees();
   totalPages.previousElementSibling.setAttribute(

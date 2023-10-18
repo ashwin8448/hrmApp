@@ -27,7 +27,7 @@ export const getId = () => {
 };
 
 export let pagination = {
-  rowsPerPage: 4,
+  rowsPerPage: 2,
   totalPages: 0,
 };
 

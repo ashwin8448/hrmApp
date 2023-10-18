@@ -167,7 +167,9 @@ document.addEventListener("DOMContentLoaded", () => {
         case "delete":
           setIdToDelete(parseInt(e.target.dataset.employeeId));
           deleteModal.style.display = "block";
-          setTimeout(() => deleteModal.classList.add("open"), 100);
+          setTimeout(() => {
+            deleteModal.classList.add("open");
+          }, 100);
           break;
       }
     }
