@@ -189,7 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
       overlay.classList.remove("open");
       e.target.closest(".modal").classList.remove("open");
       setTimeout(() => (newEmployeeFormContainer.style.display = "none"), 500);
-      console.log();
       if (
         e.target
           .closest(".modal")

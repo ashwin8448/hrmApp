@@ -113,9 +113,7 @@ export const filterHandler = (e) => {
         );
       }
     }
-    if (state.filterBy.skills.length == 0) {
-      clearFilter();
-    } else filterEmployees();
+    state.filterBy.skills.length == 0 ? clearFilter() : filterEmployees();
     displayTable();
   }
 };
