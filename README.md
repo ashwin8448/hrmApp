@@ -1,7 +1,7 @@
 # hrmApp
 
 **New features:**
-*Pagination addded to web application.
+* Pagination addded to web application.
 
 **Storage:**
 * The application uses localStorage.
