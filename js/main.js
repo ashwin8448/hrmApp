@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   paginationConatiner.addEventListener("click", (e) => {
-    if (e.target.closest(".page-controls").dataset.goTo) {
+    if (e.target.closest(".page-controls")) {
       switch (e.target.closest(".page-controls").dataset.goTo) {
         case "start":
           pageCustomInput.value = 1;
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  pageCustomInput.addEventListener("blur", (e) => {
+  pageCustomInput.addEventListener("change", (e) => {
     changePageNumber(e.target);
     displayTable();
   });

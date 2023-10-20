@@ -101,6 +101,8 @@ export const filterHandler = (e) => {
             <button type="button" class="skill-close"><img data-skill="${target.value}" src="./assets/images/close_button_icon.svg" alt="close icon"></button>
             </div>`;
         state.filterBy.skills.push(target.value);
+        console.log(state.filterBy.skills);
+        console.log();
       } else {
         selectedSkills.removeChild(
           document.querySelector(`.selected-skill-button.${target.value}`)
