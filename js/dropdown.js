@@ -6,6 +6,7 @@ import {
 import { departments, roles, skillOptions } from "./firebase.js";
 
 export const loadRoles = () => {
+  newEmployeeForm["role"].innerHTML = "";
   newEmployeeForm[
     "role"
   ].innerHTML = `<option value="" selected disabled>Select a role</option>`;
@@ -17,6 +18,7 @@ export const loadRoles = () => {
 };
 
 export const loadDepartments = () => {
+  newEmployeeForm["department"].innerHTML = "";
   newEmployeeForm["department"].innerHTML = `<option value="" selected disabled>
     Select a department
   </option>`;
