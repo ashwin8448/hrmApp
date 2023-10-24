@@ -33,18 +33,20 @@ export const loadSkills = () => {
   for (let skill of skillOptions.sort()) {
     formOptionsContainer.innerHTML += `<label class="form-options flex"
         ><input
-          id="form-${skill}"
+          id="form-option"
           class="form-checkbox"
           type="checkbox"
           value="${skill}"
+          data-form-skill="${skill}"
         />${skill}</label
       >`;
     filterOptionsContainer.innerHTML += `<label class="filter-options flex"
         ><input
-          id="${skill}"
+          id="filter-option"
           class="filter-checkbox"
           type="checkbox"
           value="${skill}"
+          data-skill="${skill}"
         />${skill}</label
       >`;
   }

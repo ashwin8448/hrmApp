@@ -148,8 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   selectedSkills.addEventListener("click", (e) => {
     if (e.target.tagName === "IMG") {
-      let targetTag = document.getElementById(e.target.dataset.skill);
-      console.log(targetTag)
+      let targetTag = filterOptionsContainer.querySelector(`[data-skill="${e.target.dataset.skill}"]`);
       targetTag.click();
     }
   });

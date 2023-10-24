@@ -63,11 +63,11 @@ const clearFilter = () => {
   state.filterBy.skills.splice(0, state.filterBy.skills.length);
 };
 
-export const addSkillHandler = (e)=>{
+export const addSkillHandler = (e) => {
   let target = e.target;
   //To open custom dropdown
   formOptionsContainer.classList.add("open");
-}
+};
 
 export const filterHandler = (e) => {
   let target = e.target;
@@ -87,15 +87,16 @@ export const filterHandler = (e) => {
   else {
     if (target.classList.contains("filter-checkbox")) {
       if (!state.filterBy.skills.includes(target.value)) {
-        selectedSkills.innerHTML += `<div class="selected-skill-button ${target.value} flex">
+        selectedSkills.innerHTML += `<div class="selected-skill-button flex" data-skill="${target.value}">
             <span>${target.value}</span>
             <button type="button" class="skill-close"><img data-skill="${target.value}" src="./assets/images/close_button_icon.svg" alt="close icon"></button>
             </div>`;
         state.filterBy.skills.push(target.value);
       } else {
-        console.log(target.value)
         selectedSkills.removeChild(
-          document.querySelector(`.selected-skill-button.${target.value}`)
+          selectedSkills.querySelector(
+            `.selected-skill-button[data-skill="${target.value}"]`
+          )
         );
         state.filterBy.skills.splice(
           state.filterBy.skills.indexOf(target.value),
@@ -110,7 +111,7 @@ export const filterHandler = (e) => {
 
 export const addNewEmployeeHandler = (id, mode) => {
   let tempEmployee = {};
-  let skills=[]
+  let skills = [];
   tempEmployee.id = String(id);
   tempEmployee.fname = newEmployeeForm["fname"].value;
   tempEmployee.lname = newEmployeeForm["lname"].value;
@@ -121,14 +122,12 @@ export const addNewEmployeeHandler = (id, mode) => {
   tempEmployee.doj = newEmployeeForm["doj"].value;
   tempEmployee.department = newEmployeeForm["department"].value;
   tempEmployee.role = newEmployeeForm["role"].value;
-  for(let checkbox of document.querySelectorAll(".form-checkbox"))
-  {
-    if(checkbox.checked==true){
-      skills.push(checkbox.value)
+  for (let checkbox of document.querySelectorAll(".form-checkbox")) {
+    if (checkbox.checked == true) {
+      skills.push(checkbox.value);
     }
   }
-  tempEmployee.skills = skills
-  console.log(tempEmployee.skills)
+  tempEmployee.skills = skills;
   if (mode == "new") {
     createEmployee(tempEmployee, tempEmployee.id);
     let tempIdObj = {};

@@ -16,9 +16,8 @@ export const loadEmployeeData = (id, mode) => {
     newEmployeeForm["department"].value = filteredEmployees[0].department;
     newEmployeeForm["role"].value = filteredEmployees[0].role;
     for(let skill of filteredEmployees[0].skills){
-      formOptionsContainer.querySelector(`#form-${skill}`).checked=true;
+      formOptionsContainer.querySelector(`[data-form-skill="${skill}"]`).checked=true;
     }
-
   } else {
     viewEmployee.children[2].firstElementChild.innerHTML =
       filteredEmployees[0].fname + " " + filteredEmployees[0].lname;

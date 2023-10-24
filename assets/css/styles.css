@@ -173,7 +173,7 @@ select {
   width: 300px;
   position: fixed;
   left: 100%;
-  top: 185px;
+  top: 175px;
   transition: all 0.5s;
   z-index: 50;
   padding: 20px;
@@ -183,6 +183,7 @@ select {
     var(--toast-bg-primary) 15px
   );
   color: white;
+  box-shadow: 0 0 20px #353535;
 }
 
 .toast.open {
