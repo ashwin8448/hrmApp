@@ -3,7 +3,6 @@ import { state } from "./state.js";
 //Function to filter employee details
 export const filterArray = (wholeArray) => {
   let result;
-  console.log(wholeArray)
   let filteredArray = wholeArray.filter((employee) => {
     result = 1;
     for (let criteria in state.filterBy) {

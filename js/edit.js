@@ -6,7 +6,6 @@ import { employees } from "./firebase.js";
 export const loadEmployeeData = (id, mode) => {
   state.filterBy.id.push(id);
   let employee=filterArray(employees)[0];
-  console.log(employee)
   if (mode == "edit") {
     newEmployeeForm["fname"].value = employee.fname;
     newEmployeeForm["lname"].value = employee.lname;
