@@ -1,8 +1,7 @@
 import { state } from "./state.js";
-import { filteredEmployees } from "./filter.js";
 
 //Function to sort details
-export const sortEmployees = () => {
+export const sortEmployees = (filteredEmployees) => {
   //Sorting numbers)
   if (filteredEmployees.length != 0) {
     if (state.sortBy === "id") {
@@ -39,4 +38,5 @@ export const sortEmployees = () => {
       });
     }
   }
+  return filteredEmployees;
 };

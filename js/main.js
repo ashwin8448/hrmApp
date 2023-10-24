@@ -36,7 +36,7 @@ import {
 import { submitValidation, validationReset } from "./formValidation.js";
 import { toastHandler } from "./toast.js";
 import { loadEmployeeData } from "./edit.js";
-import { lastId } from "./firebase.js";
+import { employees, lastId } from "./firebase.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   addNewButton.addEventListener("click", () => {
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   nameSearch.addEventListener("keyup", (e) => {
     state.filterBy.search[0] = e.target.value;
-    displayTable();
+    displayTable(employees);
   });
 
   nameSearch.addEventListener("submit", (e) => {
@@ -186,18 +186,18 @@ document.addEventListener("DOMContentLoaded", () => {
           pageCustomInput.value = pagination.totalPages;
           break;
       }
-      displayTable();
+      displayTable(employees);
     }
   });
 
   pageCustomInput.addEventListener("change", (e) => {
     changePageNumber(e.target);
-    displayTable();
+    displayTable(employees);
   });
 
   paginationForm.addEventListener("submit", (e) => {
     e.preventDefault();
     changePageNumber(e.target["page-number"]);
-    displayTable();
+    displayTable(employees);
   });
 });

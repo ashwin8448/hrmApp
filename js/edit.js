@@ -1,42 +1,44 @@
 import { formOptionsContainer, newEmployeeForm, viewEmployee } from "./elements.js";
 import { state } from "./state.js";
-import { filterEmployees, filteredEmployees } from "./filter.js";
+import { filterArray } from "./filter.js";
+import { employees } from "./firebase.js";
 
 export const loadEmployeeData = (id, mode) => {
   state.filterBy.id.push(id);
-  filterEmployees();
+  let employee=filterArray(employees)[0];
+  console.log(employee)
   if (mode == "edit") {
-    newEmployeeForm["fname"].value = filteredEmployees[0].fname;
-    newEmployeeForm["lname"].value = filteredEmployees[0].lname;
-    newEmployeeForm["dob"].value = filteredEmployees[0].dob;
-    newEmployeeForm["address"].value = filteredEmployees[0].address;
-    newEmployeeForm["phone"].value = filteredEmployees[0].phone;
-    newEmployeeForm["email"].value = filteredEmployees[0].email;
-    newEmployeeForm["doj"].value = filteredEmployees[0].doj;
-    newEmployeeForm["department"].value = filteredEmployees[0].department;
-    newEmployeeForm["role"].value = filteredEmployees[0].role;
-    for(let skill of filteredEmployees[0].skills){
+    newEmployeeForm["fname"].value = employee.fname;
+    newEmployeeForm["lname"].value = employee.lname;
+    newEmployeeForm["dob"].value = employee.dob;
+    newEmployeeForm["address"].value = employee.address;
+    newEmployeeForm["phone"].value = employee.phone;
+    newEmployeeForm["email"].value = employee.email;
+    newEmployeeForm["doj"].value = employee.doj;
+    newEmployeeForm["department"].value = employee.department;
+    newEmployeeForm["role"].value = employee.role;
+    for(let skill of employee.skills){
       formOptionsContainer.querySelector(`[data-form-skill="${skill}"]`).checked=true;
     }
   } else {
     viewEmployee.children[2].firstElementChild.innerHTML =
-      filteredEmployees[0].fname + " " + filteredEmployees[0].lname;
+      employee.fname + " " + employee.lname;
     viewEmployee.children[3].firstElementChild.innerHTML =
-      filteredEmployees[0].dob;
+      employee.dob;
     viewEmployee.children[4].firstElementChild.innerHTML =
-      filteredEmployees[0].address;
+      employee.address;
     viewEmployee.children[5].firstElementChild.innerHTML =
-      filteredEmployees[0].phone;
+      employee.phone;
     viewEmployee.children[6].firstElementChild.innerHTML =
-      filteredEmployees[0].email;
+      employee.email;
     viewEmployee.children[7].firstElementChild.innerHTML =
-      filteredEmployees[0].doj;
+      employee.doj;
     viewEmployee.children[8].firstElementChild.innerHTML =
-      filteredEmployees[0].department;
+      employee.department;
     viewEmployee.children[9].firstElementChild.innerHTML =
-      filteredEmployees[0].role;
+      employee.role;
     viewEmployee.children[10].firstElementChild.innerHTML =
-      filteredEmployees[0].skills;
+      employee.skills;
   }
   state.filterBy.id.splice(0, 1);
 };

@@ -1,13 +1,10 @@
-import { employees } from "./firebase.js";
 import { state } from "./state.js";
 
-export let filteredEmployees = [];
-
 //Function to filter employee details
-export const filterEmployees = () => {
-  filteredEmployees = employees;
+export const filterArray = (wholeArray) => {
   let result;
-  filteredEmployees = filteredEmployees.filter((employee) => {
+  console.log(wholeArray)
+  let filteredArray = wholeArray.filter((employee) => {
     result = 1;
     for (let criteria in state.filterBy) {
       if (criteria == "search") {
@@ -27,4 +24,5 @@ export const filterEmployees = () => {
     }
     return result;
   });
+  return filteredArray;
 };

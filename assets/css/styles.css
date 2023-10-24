@@ -114,6 +114,14 @@ select {
   width: 25%;
 }
 
+.view-employee-container{
+  max-height: 375px;
+}
+
+.delete-employee{
+  max-height: 170px;
+}
+
 .close-button {
   float: right;
   width: 40px;

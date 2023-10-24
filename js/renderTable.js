@@ -1,11 +1,10 @@
 import { paginationConatiner, tableBody, pageCustomInput } from "./elements.js";
-import { filteredEmployees } from "./filter.js";
 import { pagination } from "./state.js";
 //Function to render table details
-export const renderTable = () => {
+export const renderTable = (processedEmployees) => {
   paginationConatiner.style.visibility = "visible";
   let temp = "";
-  if (!filteredEmployees.length) {
+  if (!processedEmployees.length) {
     paginationConatiner.style.visibility = "hidden";
     temp =
       "<tr><td class='table-no-data' colspan='5'>No data available</td></tr>";
@@ -13,14 +12,14 @@ export const renderTable = () => {
     let value = Number(pageCustomInput.value);
     for (
       let i = pagination.rowsPerPage * (value - 1);
-      i < pagination.rowsPerPage * value && i < filteredEmployees.length;
+      i < pagination.rowsPerPage * value && i < processedEmployees.length;
       i++
     ) {
       temp += `<tr class="table-row"> 
-                      <td class="employee-id">${filteredEmployees[i].id}</td>
-                      <td>${filteredEmployees[i].fname} ${filteredEmployees[i].lname}</td>
-                      <td>${filteredEmployees[i].department}</td>
-                      <td>${filteredEmployees[i].role}</td>
+                      <td class="employee-id">${processedEmployees[i].id}</td>
+                      <td>${processedEmployees[i].fname} ${processedEmployees[i].lname}</td>
+                      <td>${processedEmployees[i].department}</td>
+                      <td>${processedEmployees[i].role}</td>
                       <td>
                       <button class="action-button-container">
                       <img
@@ -28,7 +27,7 @@ export const renderTable = () => {
                         src="./assets/images/view_user_icon.svg"
                         alt="view details icon"
                         data-action="view"
-                        data-employee-id="${filteredEmployees[i].id}"
+                        data-employee-id="${processedEmployees[i].id}"
                       />
                     </button>
                         <button class="action-button-container">
@@ -37,7 +36,7 @@ export const renderTable = () => {
                             src="./assets/images/edit_icon.svg"
                             alt="edit details icon"
                             data-action="edit"
-                            data-employee-id="${filteredEmployees[i].id}"
+                            data-employee-id="${processedEmployees[i].id}"
                           />
                         </button>
                         <button class="action-button-container">
@@ -46,7 +45,7 @@ export const renderTable = () => {
                             src="./assets/images/delete_icon.svg"
                             alt="delete employee icon"
                             data-action="delete"
-                            data-employee-id="${filteredEmployees[i].id}"
+                            data-employee-id="${processedEmployees[i].id}"
                           />
                         </button>
                       </td>

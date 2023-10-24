@@ -14,7 +14,7 @@ import {
   setSortIcon,
   setIdToDelete,
 } from "./state.js";
-import { filterEmployees } from "./filter.js";
+import { filterArray } from "./filter.js";
 import {
   blankValidation,
   emailValidation,
@@ -25,6 +25,7 @@ import { toastHandler } from "./toast.js";
 import {
   createEmployee,
   deleteEmployee,
+  employees,
   updateEmployee,
   updateLastId,
 } from "./firebase.js";
@@ -52,7 +53,7 @@ export const sortHandler = (e) => {
   sortColumn.querySelector(".sort-icon").classList.toggle("open");
   setState("sortBy", key);
   setSortIcon(openSortIcon);
-  displayTable();
+  displayTable(employees);
 };
 
 const clearFilter = () => {
@@ -80,7 +81,7 @@ export const filterHandler = (e) => {
   else if (e.target.classList.contains("clear-filter-icon")) {
     filterOptionsContainer.classList.remove("open");
     clearFilter();
-    displayTable();
+    displayTable(employees);
   }
 
   //To identify the filters applied by user
@@ -104,8 +105,8 @@ export const filterHandler = (e) => {
         );
       }
     }
-    state.filterBy.skills.length == 0 ? clearFilter() : filterEmployees();
-    displayTable();
+    if (state.filterBy.skills.length == 0) clearFilter();
+    displayTable(employees);
   }
 };
 

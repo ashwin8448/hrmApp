@@ -1,4 +1,4 @@
-import { confirmBox, toast } from "./elements.js";
+import { toast } from "./elements.js";
 
 export const toastHandler = (message) => {
   toast.classList.add("open");
@@ -7,4 +7,3 @@ export const toastHandler = (message) => {
     toast.classList.remove("open");
   }, 3000);
 };
-

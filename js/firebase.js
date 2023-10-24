@@ -37,7 +37,7 @@ export let lastId;
 
 export const setEmployees = (employeesList) => {
   employees = employeesList;
-  displayTable();
+  displayTable(employees);
 };
 
 export const setRoles = (rolesList) => {
