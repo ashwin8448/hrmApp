@@ -1,15 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100" height="100" viewBox="0 0 100 100" xml:space="preserve">
-<desc>Created with Fabric.js 5.2.4</desc>
-<defs>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100" height="100" viewBox="0 0 100 100" xml:space="preserve" xmlns:inkscape ="http://www.inkscape.org/namespaces/inkscape" >
+<desc>CopyRight:SVG Design Editor;
+configurationStart;Unit=smInches;Dpi=96;Division=4;Grid=True;Zoom=1;CanvasW=100;CanvasH=100;configurationEnd;</desc>
+
+
+<defs xmlns:inkscape ="http://www.inkscape.org/namespaces/inkscape" >
+
 </defs>
-<g transform="matrix(1 0 0 1 50 50)" id="3eb59b15-f9e3-41d5-9eca-382ab1e46e9e"  >
-<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; visibility: hidden;" vector-effect="non-scaling-stroke"  x="-50" y="-50" rx="0" ry="0" width="100" height="100" />
+
+
+
+
+<g inkscape:label = "delete_icon Default Layer" inkscape:groupmode = "layer" ><g id="group_6">
+<path style="fill:Black;stroke:none; stroke-width:1" d="m280,-120q-33,0 -56.5,-23.5q-23.5,-23.5 -23.5,-56.5l0,-520l-40,0l0,-80l200,0l0,-40l240,0l0,40l200,0l0,80l-40,0l0,520q0,33 -23.5,56.5q-23.5,23.5 -56.5,23.5l-400,0zm400,-600l-400,0l0,520l400,0l0,-520zm-320,440l80,0l0,-360l-80,0l0,360zm160,0l80,0l0,-360l-80,0l0,360zm-240,-440l0,520l0,-520z" stroke-linecap = "round" transform = "matrix(0.09,0,0,0.09,6.799995,93.2)" vector-effect="non-scaling-stroke" pen = "1,1" />
 </g>
-<g transform="matrix(Infinity NaN NaN Infinity 0 0)" id="1680321b-2ca4-4f9e-bfec-aeb684ef8e03"  >
-</g>
-<g transform="matrix(0.09 0 0 0.09 50 50)" id="b6676ed8-7522-48ea-abee-73019b3c170f"  >
-<path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke"  transform=" translate(-480, 480)" d="M 280 -120 Q 247 -120 223.5 -143.5 Q 200 -167 200 -200 L 200 -720 L 160 -720 L 160 -800 L 360 -800 L 360 -840 L 600 -840 L 600 -800 L 800 -800 L 800 -720 L 760 -720 L 760 -200 Q 760 -167 736.5 -143.5 Q 713 -120 680 -120 L 280 -120 Z M 680 -720 L 280 -720 L 280 -200 L 680 -200 L 680 -720 Z M 360 -280 L 440 -280 L 440 -640 L 360 -640 L 360 -280 Z M 520 -280 L 600 -280 L 600 -640 L 520 -640 L 520 -280 Z M 280 -720 L 280 -200 L 280 -720 Z" stroke-linecap="round" />
 </g>
 </svg>

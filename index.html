@@ -26,8 +26,13 @@
           alt="Application logo"
         />
       </h1>
-      <form name="search" class="search-bar flex upcoming">
-        <input type="text" name="name" placeholder="Search" />
+      <form name="search" class="search-bar flex" autocomplete="off">
+        <input
+          class="search-input"
+          type="text"
+          name="name"
+          placeholder="Search by name"
+        />
         <button type="button">
           <img
             class="search-icon"
@@ -39,9 +44,12 @@
     </header>
 
     <main class="container">
-      <section class="modals">
+      <section class="toast-container">
+        <div class="toast"></div>
+      </section>
+      <section class="modals-container">
         <div class="overlay"></div>
-        <div class="new-employee-form">
+        <div class="new-employee-form-container modal">
           <button class="close-button-container">
             <img
               class="close-button"
@@ -50,46 +58,121 @@
             />
           </button>
           <h3>Add new user</h3>
-          <form>
+          <form
+            class="new-employee-form"
+            name="new-employee-form"
+            autocomplete="off"
+            data-mode="new"
+          >
             <fieldset>
               <legend>Personal Details</legend>
-              <div>
-                <label>First name: </label>
-                <input type="text" name="fname" />
-              </div>
-              <div>
-                <label>Last name: </label>
-                <input type="text" name="lname" />
-              </div>
-              <div>
-                <label>Date of birth: </label>
-                <input type="date" name="dob" />
+              <div class="flex form-section">
+                <div class="element flex-column">
+                  <label for="fname">First name:</label>
+                  <input id="fname" type="text" name="fname" data-type="name" />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+                <div class="element flex-column">
+                  <label for="lname">Last name:</label>
+                  <input id="lname" type="text" name="lname" data-type="name" />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+                <div class="element flex-column">
+                  <label for="dob">Date of birth:</label>
+                  <input id="dob" type="date" name="dob" data-type="date" />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
               </div>
             </fieldset>
-            <fieldset>
+            <fieldset class="flex">
               <legend>Contact Details</legend>
-              <label>Address: </label>
-              <input type="text" name="address" />
-              <br />
-              <label>Phone: </label>
-              <input type="text" name="phone" />
-              <br />
-              <label>Email: </label>
-              <input type="text" name="email" />
+              <div class="flex form-section">
+                <div class="element flex-column">
+                  <label for="address">Address:</label>
+                  <input
+                    id="address"
+                    type="text"
+                    name="address"
+                    data-type="address"
+                  />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+                <div class="element flex-column">
+                  <label for="phone">Phone:</label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    name="phone"
+                    maxlength="10"
+                    data-type="phone"
+                  />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+                <div class="element flex-column">
+                  <label for="email">Email:</label>
+                  <input
+                    id="email"
+                    type="text"
+                    name="email"
+                    data-type="email"
+                  />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+              </div>
             </fieldset>
-            <fieldset>
+            <fieldset class="flex">
               <legend>Employment Details</legend>
-              <label>Date of joining: </label>
-              <input type="date" name="doj" />
-              <br />
-              <label>Role: </label>
-              <input type="text" name="role" />
-              <br />
-              <label>Skills: </label>
-              <input type="text" name="skills" />
+              <div class="flex form-section">
+                <div class="element flex-column">
+                  <label for="doj">Date of joining:</label>
+                  <input id="doj" type="date" name="doj" data-type="date" />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+                <div class="element flex-column">
+                  <label for="department">Department:</label>
+                  <select
+                    id="department"
+                    name="department"
+                    data-type="department"
+                  >
+                    <option value="" selected disabled>
+                      Select a department
+                    </option>
+                    <option value="BDG">BDG</option>
+                    <option value="HR">HR</option>
+                    <option value="Accounts">Accounts</option>
+                  </select>
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+                <div class="element flex-column">
+                  <label for="role">Role:</label>
+                  <select
+                    id="role"
+                    name="role"
+                    data-type="role"
+                    autocomplete="off"
+                  >
+                    <option value="" selected disabled>Select a role</option>
+                    <option value="Intern">Intern</option>
+                    <option value="Architect">Architect</option>
+                    <option value="Software Engineer">Software Engineer</option>
+                  </select>
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+                <div class="element flex-column">
+                  <label for="skills">Skills:</label>
+                  <input
+                    id="skills"
+                    type="text"
+                    name="skills"
+                    data-type="skills"
+                  />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+              </div>
             </fieldset>
-            <fieldset>
-              <input class="primary-button" name="reset" type="reset" />
+            <fieldset class="new-form">
+              <input class="primary-button" type="reset" />
               <input
                 class="primary-button"
                 type="submit"
@@ -97,21 +180,48 @@
                 value="Submit"
               />
             </fieldset>
+            <fieldset class="edit-form">
+              <input
+                class="primary-button"
+                type="submit"
+                name="submit"
+                value="Save"
+              />
+            </fieldset>
           </form>
         </div>
-        <div class="delete-employee">
-          <div class="delete-header flex">
-            <h3>Delete Employee Details</h3>
-            <button class="close-button-container">
-              <img
-                class="close-button"
-                src="./assets/images/close_button_icon.svg"
-                alt="Delete employee modal close icon"
-              />
-            </button>
-          </div>
-          <p>Do you really want to delete this employee's details?</p>
-          <div class="delete-employee-details"></div>
+        <div class="view-employee-container modal">
+          <button class="close-button-container">
+            <img
+              class="close-button"
+              src="./assets/images/close_button_icon.svg"
+              alt="New employee form close icon"
+            />
+          </button>
+          <h3>Employee Details</h3>
+          <p>Name: <span></span></p>
+          <p>Date of Birth: <span></span></p>
+          <p>Address: <span></span></p>
+          <p>Phone: <span></span></p>
+          <p>Email: <span></span></p>
+          <p>Date of joining: <span></span></p>
+          <p>Department: <span></span></p>
+          <p>Role: <span></span></p>
+          <p>Skills: <span></span></p>
+        </div>
+        <div class="delete-employee modal">
+          <button class="close-button-container">
+            <img
+              class="close-button"
+              src="./assets/images/close_button_icon.svg"
+              alt="Delete employee modal close icon"
+            />
+          </button>
+          <h3 class="flex">Delete Employee Details</h3>
+          <p class="flex">
+            Do you really want to delete this employee's details?
+          </p>
+          <!-- <div class="delete-employee-details"></div> -->
           <div class="confirmation-buttons flex">
             <button class="primary-button" value="yes">Yes</button>
             <button class="primary-button" value="no">No</button>
@@ -120,7 +230,7 @@
       </section>
       <section>
         <div class="table-options flex">
-          <div class="add-new-employee upcoming">
+          <div class="add-new-employee">
             <button type="button" class="primary-button add-new-user flex">
               <span>Add new user</span>
               <img
@@ -132,9 +242,13 @@
           </div>
 
           <div class="filter">
-            <form class="search-bar flex" autocomplete="off">
+            <form
+              name="filter-search"
+              class="search-bar flex"
+              autocomplete="off"
+            >
               <input
-                class="filter-search"
+                class="filter-search search-input"
                 type="text"
                 placeholder="Click to view dropdown"
               />
@@ -195,7 +309,11 @@
             <thead class="table-header">
               <tr>
                 <th>
-                  <div class="column-header flex" data-storage-key="id">
+                  <div
+                    title="Click to sort based on ID"
+                    class="column-header flex"
+                    data-storage-key="id"
+                  >
                     <h3>Employee ID</h3>
                     <img
                       class="sort-icon open"
@@ -205,7 +323,11 @@
                   </div>
                 </th>
                 <th>
-                  <div class="column-header flex" data-storage-key="name">
+                  <div
+                    title="Click to sort based on name"
+                    class="column-header flex"
+                    data-storage-key="name"
+                  >
                     <h3>Name</h3>
                     <img
                       class="sort-icon"
@@ -215,7 +337,11 @@
                   </div>
                 </th>
                 <th>
-                  <div class="column-header flex" data-storage-key="department">
+                  <div
+                    title="Click to sort based on department"
+                    class="column-header flex"
+                    data-storage-key="department"
+                  >
                     <h3>Department</h3>
                     <img
                       class="sort-icon"
@@ -225,7 +351,11 @@
                   </div>
                 </th>
                 <th>
-                  <div class="column-header flex" data-storage-key="role">
+                  <div
+                    title="Click to sort based on role"
+                    class="column-header flex"
+                    data-storage-key="role"
+                  >
                     <h3>Role</h3>
                     <img
                       class="sort-icon"

@@ -1,14 +1,14 @@
 # hrmApp
 
-Features:
--Sort employees based on any column
--Filter employees based on skills
--Delete employee details.
+**New features:**
+* New employees can be added.
+* Employee action buttons are functional.
+* Employees can be searched by name.
 
-Storage:
--The application uses localStorage.
+**Storage:**
+* The application uses localStorage.
 
-Upcoming features:
--Add new employees.
--Edit existing employee details.
--Search employees by name.
+**Upcoming features:**
+* Search skills in the filter box.
+* Skills field in new employee form will be searchable.
+

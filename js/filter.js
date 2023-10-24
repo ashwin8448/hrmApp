@@ -10,9 +10,17 @@ export const filterEmployees = () => {
   filteredEmployees = filteredEmployees.filter((employee) => {
     result = 1;
     for (let criteria in state.filterBy) {
-      result *= state.filterBy[criteria].every((criteriaElement) => {
-        return employee[criteria].includes(criteriaElement);
-      });
+      if (criteria == "search") {
+        result *= state.filterBy[criteria].every((criteriaElement) => {
+          return `${employee.fname.toLowerCase()} ${employee.lname.toLowerCase()}`.includes(
+            criteriaElement.toLowerCase()
+          );
+        });
+      } else {
+        result *= state.filterBy[criteria].every((criteriaElement) => {
+          return employee[criteria].includes(criteriaElement);
+        });
+      }
       if (!result) {
         return result;
       }

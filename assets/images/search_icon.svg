@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#ffffff" d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5q0-2.725 1.888-4.612T9.5 3q2.725 0 4.612 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3l-1.4 1.4ZM9.5 14q1.875 0 3.188-1.313T14 9.5q0-1.875-1.313-3.188T9.5 5Q7.625 5 6.312 6.313T5 9.5q0 1.875 1.313 3.188T9.5 14Z"/></svg>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" xmlns:inkscape ="http://www.inkscape.org/namespaces/inkscape" >
+<desc>CopyRight:SVG Design Editor;
+configurationStart;Unit=smInches;Dpi=96;Division=4;Grid=True;Zoom=1;CanvasW=32;CanvasH=32;configurationEnd;</desc>
+<g inkscape:label = "search_icon Default Layer" inkscape:groupmode = "layer" ><path style="fill:#000000;stroke:none; stroke-width:1" d="m19.6,21l-6.3,-6.3q-0.75,0.6 -1.72,0.95t-2.08,0.35q-2.72,0 -4.61,-1.89t-1.89,-4.61q0,-2.72 1.89,-4.61t4.61,-1.89q2.72,0 4.61,1.89t1.89,4.61q0,1.1 -0.35,2.08t-0.95,1.72l6.3,6.3l-1.4,1.4zm-10.1,-7q1.88,0 3.19,-1.31t1.31,-3.19q0,-1.88 -1.31,-3.19t-3.19,-1.31q-1.88,0 -3.19,1.31t-1.31,3.19q0,1.88 1.31,3.19t3.19,1.31z" transform = "matrix(1,0,0,1,0,0)" vector-effect="non-scaling-stroke" pen = "1,1" />
+</g>
+</svg>

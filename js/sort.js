@@ -11,7 +11,22 @@ export const sortEmployees = () => {
       });
     }
     //Sorting Strings
-    else {
+    else if (state.sortBy === "name") {
+      filteredEmployees.sort((a, b) => {
+        if (
+          `${a.fname} ${a.lname}`.toLowerCase() >
+          `${b.fname} ${b.lname}`.toLowerCase()
+        ) {
+          return 1 * state.sortFlag;
+        } else if (
+          `${a.fname} ${a.lname}`.toLowerCase() <
+          `${b.fname} ${b.lname}`.toLowerCase()
+        ) {
+          return -1 * state.sortFlag;
+        }
+        return 0;
+      });
+    } else {
       filteredEmployees.sort((a, b) => {
         if (a[state.sortBy].toLowerCase() > b[state.sortBy].toLowerCase()) {
           return 1 * state.sortFlag;
