@@ -150,15 +150,17 @@
                   <p class="error-placeholder">Error placeholder</p>
                 </div>
                 <div class="element flex-column">
-                  <label for="skills">Skills:</label>
+                  <label class="optional">Skills:</label>
                   <input
                     id="skills"
                     type="text"
                     name="skills"
-                    data-type="skills"
+                    placeholder="Click to choose skills"
+                    class="form-skills"
+                    readonly
                   />
                   <p class="error-placeholder">Error placeholder</p>
-                  <div class="flex form-options-container"></div>
+                  <div class="flex form-options-container form-skills"></div>
                 </div>
               </div>
             </fieldset>

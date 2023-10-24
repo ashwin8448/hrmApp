@@ -13,7 +13,7 @@ Common styles
   --button: #ffffff;
   --overlay-bg: rgba(0, 0, 0, 0.459);
   --hover-bg: #958989b5;
-  --toast-bg-primary: rgb(79, 204, 79);
+  --toast-bg-primary: rgb(70, 161, 70);
   --toast-bg-secondary: #dddddd;
   --selected-skill: #ffcb00;
   --asterisk: red;
@@ -233,6 +233,11 @@ New employee button, form
   color: var(--asterisk);
 }
 
+.form-options-container label::before,
+.new-employee-form .optional::before{
+  content: "";
+}
+
 .add-new-user {
   width: 150px;
   align-items: center;
@@ -276,6 +281,7 @@ fieldset {
 
 .new-employee-form-container .element {
   width: 45%;
+  position: relative;
 }
 
 fieldset .primary-button {
@@ -389,7 +395,7 @@ Filter
 .filter-options-container,
 .form-options-container {
   border-radius: 4px;
-  width: 300px;
+  width: 100%;
   flex-direction: column;
   visibility: hidden;
   position: absolute;
@@ -400,13 +406,27 @@ Filter
   gap: 5px;
   background-color: var(--dropdown-bg);
   border: 1px solid black;
+  max-height: 150px;
+  overflow: auto;
+}
+
+.form-options-container{
+  top: 58px;
+}
+
+.form-options{
+  align-items: baseline;
+  gap: 5px;
+}
+
+.add-skills{
+  position: relative;
+  width: 100%;
 }
 
 .filter-options-container.open,
 .form-options-container.open {
   visibility: visible;
-  max-height: 150px;
-  overflow: auto;
 }
 
 .filter-options {

@@ -28,3 +28,4 @@ export const paginationConatiner = document.querySelector(".pagination");
 export const pageCustomInput = document.querySelector(".custom-input");
 export const paginationForm = document.forms["pagination"];
 export const loaderContainer = document.querySelector(".loader-container");
+export const addSkills = document.querySelector(".new-employee-form #skills");

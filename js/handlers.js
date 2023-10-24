@@ -5,6 +5,7 @@ import {
   selectedSkills,
   filterOptionsContainer,
   newEmployeeForm,
+  formOptionsContainer,
 } from "./elements.js";
 import {
   idToDelete,
@@ -62,6 +63,12 @@ const clearFilter = () => {
   state.filterBy.skills.splice(0, state.filterBy.skills.length);
 };
 
+export const addSkillHandler = (e)=>{
+  let target = e.target;
+  //To open custom dropdown
+  formOptionsContainer.classList.add("open");
+}
+
 export const filterHandler = (e) => {
   let target = e.target;
   //To open custom dropdown
@@ -103,6 +110,7 @@ export const filterHandler = (e) => {
 
 export const addNewEmployeeHandler = (id, mode) => {
   let tempEmployee = {};
+  let skills=[]
   tempEmployee.id = id;
   tempEmployee.fname = newEmployeeForm["fname"].value;
   tempEmployee.lname = newEmployeeForm["lname"].value;
@@ -113,7 +121,14 @@ export const addNewEmployeeHandler = (id, mode) => {
   tempEmployee.doj = newEmployeeForm["doj"].value;
   tempEmployee.department = newEmployeeForm["department"].value;
   tempEmployee.role = newEmployeeForm["role"].value;
-  tempEmployee.skills = newEmployeeForm["skills"].value;
+  for(let checkbox of document.querySelectorAll(".form-checkbox"))
+  {
+    if(checkbox.checked==true){
+      skills.push(checkbox.value)
+    }
+  }
+  tempEmployee.skills = skills
+  console.log(tempEmployee.skills)
   if (mode == "new") {
     createEmployee(tempEmployee, tempEmployee.id);
     let tempIdObj = {};

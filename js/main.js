@@ -14,6 +14,8 @@ import {
   pageCustomInput,
   paginationForm,
   filterForm,
+  addSkills,
+  formOptionsContainer,
 } from "./elements.js";
 import { displayTable } from "./displayTable.js";
 import {
@@ -22,6 +24,7 @@ import {
   filterHandler,
   addNewEmployeeHandler,
   validationHandler,
+  addSkillHandler,
 } from "./handlers.js";
 import {
   idToDelete,
@@ -77,6 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   newEmployeeForm.addEventListener("reset", (e) => {
+    formOptionsContainer.classList.remove("open");
+    newEmployeeForm.previousElementSibling.innerHTML = "Add new user"
     validationReset();
   });
 
@@ -95,6 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
           loadEmployeeData(parseInt(e.target.dataset.employeeId), "edit");
           setIdToDelete(e.target.dataset.employeeId);
           newEmployeeForm.dataset.mode = "edit";
+          newEmployeeForm.previousElementSibling.innerHTML = "Edit user"
           newEmployeeFormContainer.style.display = "block";
           newEmployeeFormContainer.querySelector(".new-form").style.display =
             "none";
@@ -114,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   filter.addEventListener("click", filterHandler);
+  addSkills.addEventListener("click", addSkillHandler);
 
   filterForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -122,6 +129,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("click", (e) => {
     if (!e.target.closest(".filter")) {
       filterOptionsContainer.classList.remove("open");
+    }
+    if(!e.target.closest(".form-skills")){
+      formOptionsContainer.classList.remove("open");
     }
     if (e.target.classList.contains("close-button")) {
       overlay.classList.remove("open");
