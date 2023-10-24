@@ -16,7 +16,6 @@ export const formOptionsContainer = document.querySelector(
 export const deleteModal = document.querySelector(".delete-employee");
 export const filterSearch = document.querySelector(".filter-search");
 export const filterForm = document.forms["filter-search"];
-// export const checkboxes = document.querySelectorAll(".filter-checkbox");
 export const newEmployeeForm = document.forms["new-employee-form"];
 export const newEmployeeCloseButton = document.querySelector(".close-button");
 export const toast = document.querySelector(".toast");

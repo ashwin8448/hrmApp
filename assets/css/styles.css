@@ -27,6 +27,7 @@ html {
 
 body {
   background-image: linear-gradient(180deg, var(--bg-blue), var(--bg-green));
+  background-attachment: fixed;
   color: var(--font);
   font-family: Urbanist;
   font-weight: 600;
@@ -172,7 +173,7 @@ select {
 .toast {
   width: 300px;
   position: fixed;
-  left: 100%;
+  left: 110%;
   top: 175px;
   transition: all 0.5s;
   z-index: 50;
@@ -187,7 +188,7 @@ select {
 }
 
 .toast.open {
-  transform: translate(-300px);
+  transform: translate(-425px);
 }
 /*----------------------------- 
 Header 
@@ -489,6 +490,7 @@ Filter
 
 main {
   flex-grow: 1;
+  gap: 10px;
 }
 
 /*----------------------------- 
