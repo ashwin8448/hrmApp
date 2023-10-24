@@ -21,7 +21,7 @@ export const setIdToDelete = (id) => {
 };
 
 export let pagination = {
-  rowsPerPage: 2,
+  rowsPerPage: 5,
   totalPages: 0,
 };
 

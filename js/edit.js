@@ -1,4 +1,4 @@
-import { newEmployeeForm, viewEmployee } from "./elements.js";
+import { formOptionsContainer, newEmployeeForm, viewEmployee } from "./elements.js";
 import { state } from "./state.js";
 import { filterEmployees, filteredEmployees } from "./filter.js";
 
@@ -15,7 +15,10 @@ export const loadEmployeeData = (id, mode) => {
     newEmployeeForm["doj"].value = filteredEmployees[0].doj;
     newEmployeeForm["department"].value = filteredEmployees[0].department;
     newEmployeeForm["role"].value = filteredEmployees[0].role;
-    newEmployeeForm["skills"].value = filteredEmployees[0].skills;
+    for(let skill of filteredEmployees[0].skills){
+      formOptionsContainer.querySelector(`#form-${skill}`).checked=true;
+    }
+
   } else {
     viewEmployee.children[2].firstElementChild.innerHTML =
       filteredEmployees[0].fname + " " + filteredEmployees[0].lname;

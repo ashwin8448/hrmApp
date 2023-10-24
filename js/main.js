@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
       overlay.classList.add("open");
       switch (e.target.dataset.action) {
         case "view":
-          loadEmployeeData(parseInt(e.target.dataset.employeeId), "view");
+          loadEmployeeData((e.target.dataset.employeeId), "view");
           viewEmployee.style.display = "block";
           setTimeout(() => viewEmployee.classList.add("open"), 100);
           break;

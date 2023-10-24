@@ -261,6 +261,8 @@ select {
   border-radius: 4px;
   padding: 5px;
   margin: 7px 0 0 0;
+  height: 40px;
+  box-sizing: border-box;
 }
 
 legend {
@@ -417,6 +419,10 @@ Filter
 .form-options{
   align-items: baseline;
   gap: 5px;
+}
+
+.form-options input{
+  height: auto;
 }
 
 .add-skills{

@@ -111,7 +111,7 @@ export const filterHandler = (e) => {
 export const addNewEmployeeHandler = (id, mode) => {
   let tempEmployee = {};
   let skills=[]
-  tempEmployee.id = id;
+  tempEmployee.id = String(id);
   tempEmployee.fname = newEmployeeForm["fname"].value;
   tempEmployee.lname = newEmployeeForm["lname"].value;
   tempEmployee.dob = newEmployeeForm["dob"].value;
