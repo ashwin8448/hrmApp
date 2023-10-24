@@ -50,6 +50,7 @@
       </section>
       <section class="modals-container">
         <div class="overlay"></div>
+        <div class="loader-container"><span class="loader"></span></div>
         <div class="new-employee-form-container modal">
           <button class="close-button-container">
             <img
@@ -135,14 +136,7 @@
                     id="department"
                     name="department"
                     data-type="department"
-                  >
-                    <option value="" selected disabled>
-                      Select a department
-                    </option>
-                    <option value="BDG">BDG</option>
-                    <option value="HR">HR</option>
-                    <option value="Accounts">Accounts</option>
-                  </select>
+                  ></select>
                   <p class="error-placeholder">Error placeholder</p>
                 </div>
                 <div class="element flex-column">
@@ -152,12 +146,7 @@
                     name="role"
                     data-type="role"
                     autocomplete="off"
-                  >
-                    <option value="" selected disabled>Select a role</option>
-                    <option value="Intern">Intern</option>
-                    <option value="Architect">Architect</option>
-                    <option value="Software Engineer">Software Engineer</option>
-                  </select>
+                  ></select>
                   <p class="error-placeholder">Error placeholder</p>
                 </div>
                 <div class="element flex-column">
@@ -169,6 +158,7 @@
                     data-type="skills"
                   />
                   <p class="error-placeholder">Error placeholder</p>
+                  <div class="flex form-options-container"></div>
                 </div>
               </div>
             </fieldset>
@@ -222,7 +212,6 @@
           <p class="flex">
             Do you really want to delete this employee's details?
           </p>
-          <!-- <div class="delete-employee-details"></div> -->
           <div class="confirmation-buttons flex">
             <button class="primary-button" value="yes">Yes</button>
             <button class="primary-button" value="no">No</button>
@@ -261,44 +250,7 @@
                 />
               </button>
 
-              <div class="flex filter-options-container">
-                <div class="filter-options flex">
-                  <input
-                    class="filter-checkbox"
-                    type="checkbox"
-                    value="HTML"
-                    id="HTML"
-                  />
-                  <label for="HTML">HTML</label>
-                </div>
-                <div class="filter-options flex">
-                  <input
-                    class="filter-checkbox"
-                    type="checkbox"
-                    value="CSS"
-                    id="CSS"
-                  />
-                  <label for="CSS">CSS</label>
-                </div>
-                <div class="filter-options flex">
-                  <input
-                    class="filter-checkbox"
-                    type="checkbox"
-                    value="React"
-                    id="React"
-                  />
-                  <label for="React">React</label>
-                </div>
-                <div class="filter-options flex">
-                  <input
-                    class="filter-checkbox"
-                    type="checkbox"
-                    value="Node"
-                    id="Node"
-                  />
-                  <label for="Node">Node</label>
-                </div>
-              </div>
+              <div class="flex filter-options-container"></div>
             </form>
           </div>
         </div>
@@ -416,8 +368,9 @@
       </section>
     </main>
     <footer>
-      <p class="footer-content flex">A FEED fresher's product.</p>
+      <p class="footer-content flex">HRM Application</p>
     </footer>
+    <script src="./js/firebase.js" type="module"></script>
     <script src="./js/main.js" type="module"></script>
   </body>
 </html>

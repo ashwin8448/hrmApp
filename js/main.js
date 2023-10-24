@@ -26,7 +26,6 @@ import {
 import {
   idToDelete,
   setIdToDelete,
-  getId,
   state,
   pagination,
   changePageNumber,
@@ -34,69 +33,9 @@ import {
 import { submitValidation, validationReset } from "./formValidation.js";
 import { toastHandler } from "./toast.js";
 import { loadEmployeeData } from "./edit.js";
-import { employees, setEmployees } from "./firebase.js";
-import { filteredEmployees } from "./filter.js";
-
-let employeesDb = [
-  {
-    id: "1000",
-    fname: "JacobA",
-    lname: "RoyA",
-    dob: "1111-01-01",
-    address: "ABC1",
-    phone: "0123456781",
-    email: "a1@y.com",
-    doj: "1111-01-02",
-    department: "BDG",
-    role: "Intern",
-    skills: ["HTML", "CSS"],
-  },
-  {
-    id: "1001",
-    fname: "JacobB",
-    lname: "RoyB",
-    dob: "1111-01-03",
-    address: "ABC2",
-    phone: "0123456782",
-    email: "a2@y.com",
-    doj: "1111-01-04",
-    department: "Accounts",
-    role: "Intern",
-    skills: ["CSS"],
-  },
-  {
-    id: "1002",
-    fname: "JacobC",
-    lname: "RoyC",
-    dob: "1111-01-05",
-    address: "ABC3",
-    phone: "0123456783",
-    email: "a3@y.com",
-    doj: "1111-01-06",
-    department: "HR",
-    role: "Intern",
-    skills: ["HTML", "CSS", "React"],
-  },
-  {
-    id: "1003",
-    fname: "JacobD",
-    lname: "RoyD",
-    dob: "1111-01-07",
-    address: "ABC4",
-    phone: "0123456784",
-    email: "a4@y.com",
-    doj: "1111-01-08",
-    department: "BDG",
-    role: "Intern",
-    skills: ["React", "Node"],
-  },
-];
-
-localStorage.setItem("employees", JSON.stringify(employeesDb));
+import { lastId } from "./firebase.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  //Display table on load, sorted by id.
-  displayTable();
   addNewButton.addEventListener("click", () => {
     newEmployeeForm.dataset.mode = "new";
     newEmployeeFormContainer.querySelector(".new-form").style.display = "block";
@@ -117,12 +56,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let employeeId;
     if (submitValidation()) {
       if (newEmployeeForm.dataset.mode == "edit") {
-        setEmployees(employees.filter((employee) => employee.id != idToDelete));
         employeeId = idToDelete;
       } else {
-        employeeId = getId();
+        employeeId = lastId + 1;
       }
-      addNewEmployeeHandler(e, employeeId);
+      addNewEmployeeHandler(employeeId, newEmployeeForm.dataset.mode);
       setIdToDelete(-1);
       overlay.classList.remove("open");
       newEmployeeFormContainer.classList.remove("open");
@@ -201,6 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
   selectedSkills.addEventListener("click", (e) => {
     if (e.target.tagName === "IMG") {
       let targetTag = document.getElementById(e.target.dataset.skill);
+      console.log(targetTag)
       targetTag.click();
     }
   });

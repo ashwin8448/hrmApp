@@ -2,9 +2,16 @@ import { sortEmployees } from "./sort.js";
 import { filterEmployees, filteredEmployees } from "./filter.js";
 import { renderTable } from "./renderTable.js";
 import { pagination, setTotalPages } from "./state.js";
-import { pageCustomInput, totalPages } from "./elements.js";
+import {
+  loaderContainer,
+  overlay,
+  pageCustomInput,
+  totalPages,
+} from "./elements.js";
 
 export const displayTable = () => {
+  loaderContainer.classList.remove("open");
+  overlay.classList.remove("open");
   filterEmployees();
   setTotalPages(filteredEmployees.length);
   if (Number(pageCustomInput.value) > pagination.totalPages) {

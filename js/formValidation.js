@@ -1,5 +1,4 @@
-import { newEmployeeForm, paginationForm, totalPages } from "./elements.js";
-import { pagination } from "./state.js";
+import { newEmployeeForm, paginationForm } from "./elements.js";
 
 export const blankValidation = (input) => {
   if (input == "") throw "This field cannot be left blank.";
@@ -7,7 +6,7 @@ export const blankValidation = (input) => {
 };
 
 export const nameValidation = (input) => {
-  if (!/^[A-Za-z\s]+$/.test(input)) throw "Name can contain only alphabets.";
+  if (!/^[a-zA-Z]+[a-zA-Z\s]*?[^0-9]$/.test(input)) throw "Invalid name.";
   return true;
 };
 

@@ -17,18 +17,24 @@ export const loadEmployeeData = (id, mode) => {
     newEmployeeForm["role"].value = filteredEmployees[0].role;
     newEmployeeForm["skills"].value = filteredEmployees[0].skills;
   } else {
-    let count = 0;
-    viewEmployee.children[2].firstElementChild.innerHTML = "";
-    for (let detail in filteredEmployees[0]) {
-      if (count > 2) {
-        viewEmployee.children[count].firstElementChild.innerHTML =
-          filteredEmployees[0][detail];
-      } else if (count >= 1) {
-        viewEmployee.children[2].firstElementChild.innerHTML +=
-          filteredEmployees[0][detail] + " ";
-      }
-      count++;
-    }
+    viewEmployee.children[2].firstElementChild.innerHTML =
+      filteredEmployees[0].fname + " " + filteredEmployees[0].lname;
+    viewEmployee.children[3].firstElementChild.innerHTML =
+      filteredEmployees[0].dob;
+    viewEmployee.children[4].firstElementChild.innerHTML =
+      filteredEmployees[0].address;
+    viewEmployee.children[5].firstElementChild.innerHTML =
+      filteredEmployees[0].phone;
+    viewEmployee.children[6].firstElementChild.innerHTML =
+      filteredEmployees[0].email;
+    viewEmployee.children[7].firstElementChild.innerHTML =
+      filteredEmployees[0].doj;
+    viewEmployee.children[8].firstElementChild.innerHTML =
+      filteredEmployees[0].department;
+    viewEmployee.children[9].firstElementChild.innerHTML =
+      filteredEmployees[0].role;
+    viewEmployee.children[10].firstElementChild.innerHTML =
+      filteredEmployees[0].skills;
   }
   state.filterBy.id.splice(0, 1);
 };
