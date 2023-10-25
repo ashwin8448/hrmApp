@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100" height="100" viewBox="0 0 100 100" xml:space="preserve" xmlns:inkscape ="http://www.inkscape.org/namespaces/inkscape" >
+<desc>CopyRight:SVG Design Editor;
+configurationStart;Unit=smInches;Dpi=96;Division=4;Grid=True;Zoom=1;CanvasW=100;CanvasH=100;configurationEnd;</desc>
+
+
+<defs xmlns:inkscape ="http://www.inkscape.org/namespaces/inkscape" >
+
+</defs>
+
+
+
+
+
+<g inkscape:label = "edit_icon Default Layer" inkscape:groupmode = "layer" ><rect style="fill:Transparent;stroke:none; stroke-width:1" x = "0" y = "0" width = "1.041667in" height = "1.041667in" vector-effect="non-scaling-stroke" pen = "1,1" />
+<g id="group_9">
+<path style="fill:Black;stroke:none; stroke-width:1" d="m200,-200l56,0l345,-345l-56,-56l-345,345l0,56zm572,-403l-170,-168l56,-56q23,-23 56.5,-23q33.5,0 56.5,23l56,56q23,23 24,55.5q1,32.5 -22,55.5l-57,57zm-58,59l-424,424l-170,0l0,-170l424,-424l170,170zm-141,-29l-28,-28l56,56l-28,-28z" stroke-linecap = "round" transform = "matrix(0.09,0,0,0.09,6.290596,93.65)" vector-effect="non-scaling-stroke" pen = "1,1" />
+</g>
+</g>
+</svg>

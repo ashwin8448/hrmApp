@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A website to manage the human resources of a firm."
+    />
+    <title>HRM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope&family=Urbanist:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/normalize.css" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.png" />
+  </head>
+  <body class="flex-column">
+    <header class="flex container">
+      <h1>
+        <img
+          class="logo"
+          src="./assets/images/logo.png"
+          alt="Application logo"
+        />
+      </h1>
+      <form name="search" class="search-bar flex" autocomplete="off">
+        <input
+          class="search-input"
+          type="text"
+          name="name"
+          placeholder="Search by name"
+        />
+        <button type="button">
+          <img
+            class="search-icon icon"
+            src="./assets/images/search_icon.svg"
+            alt="Search icon"
+          />
+        </button>
+      </form>
+    </header>
+
+    <main class="container flex-column">
+      <section class="toast-container">
+        <div class="toast"></div>
+      </section>
+      <section class="modals-container">
+        <div class="overlay"></div>
+        <div class="loader-container"><span class="loader"></span></div>
+        <div class="new-employee-form-container modal">
+          <div class="modal-header flex">
+            <h2 class="form-heading">Add new user</h2>
+            <button class="close-button-container">
+              <img
+                class="close-button icon"
+                src="./assets/images/close_button_icon.svg"
+                alt="New employee form close icon"
+              />
+            </button>
+          </div>
+          <form
+            class="new-employee-form"
+            name="new-employee-form"
+            autocomplete="off"
+            data-mode="new"
+          >
+            <fieldset>
+              <legend>Personal Details</legend>
+              <div class="flex form-section">
+                <div class="element flex-column">
+                  <label for="fname">First name:</label>
+                  <input id="fname" type="text" name="fname" data-type="name" />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+                <div class="element flex-column">
+                  <label for="lname">Last name:</label>
+                  <input id="lname" type="text" name="lname" data-type="name" />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+                <div class="element flex-column">
+                  <label for="dob">Date of birth:</label>
+                  <input id="dob" type="date" name="dob" data-type="date" />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="flex">
+              <legend>Contact Details</legend>
+              <div class="flex form-section">
+                <div class="element flex-column">
+                  <label for="address">Address:</label>
+                  <input
+                    id="address"
+                    type="text"
+                    name="address"
+                    data-type="address"
+                  />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+                <div class="element flex-column">
+                  <label for="phone">Phone:</label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    name="phone"
+                    maxlength="10"
+                    data-type="phone"
+                  />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+                <div class="element flex-column">
+                  <label for="email">Email:</label>
+                  <input
+                    id="email"
+                    type="text"
+                    name="email"
+                    data-type="email"
+                  />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="flex">
+              <legend>Employment Details</legend>
+              <div class="flex form-section">
+                <div class="element flex-column">
+                  <label for="doj">Date of joining:</label>
+                  <input id="doj" type="date" name="doj" data-type="date" />
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+                <div class="element flex-column">
+                  <label for="department">Department:</label>
+                  <select
+                    id="department"
+                    name="department"
+                    data-type="department"
+                  ></select>
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+                <div class="element flex-column">
+                  <label for="role">Role:</label>
+                  <select
+                    id="role"
+                    name="role"
+                    data-type="role"
+                    autocomplete="off"
+                  ></select>
+                  <p class="error-placeholder">Error placeholder</p>
+                </div>
+                <div class="element flex-column">
+                  <label class="optional">Skills:</label>
+                  <input
+                    id="skills"
+                    type="text"
+                    name="skills"
+                    placeholder="Click to choose skills"
+                    class="form-skills"
+                  />
+                  <p class="error-placeholder">Error placeholder</p>
+                  <div class="flex form-options-container form-skills"></div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="new-form">
+              <input class="primary-button" type="reset" />
+              <input
+                class="primary-button"
+                type="submit"
+                name="submit"
+                value="Submit"
+              />
+            </fieldset>
+            <fieldset class="edit-form">
+              <input
+                class="primary-button"
+                type="submit"
+                name="submit"
+                value="Save"
+              />
+            </fieldset>
+          </form>
+        </div>
+        <div class="view-employee-container modal">
+          <div class="modal-header flex">
+            <h2>Employee Details</h2>
+            <button class="close-button-container">
+              <img
+                class="close-button icon"
+                src="./assets/images/close_button_icon.svg"
+                alt="New employee form close icon"
+              />
+            </button>
+          </div>
+          <p>Name: <span class="name"></span></p>
+          <p>Date of Birth: <span class="dob"></span></p>
+          <p>Address: <span class="address"></span></p>
+          <p>Phone: <span class="phone"></span></p>
+          <p>Email: <span class="email"></span></p>
+          <p>Date of joining: <span class="doj"></span></p>
+          <p>Department: <span class="department"></span></p>
+          <p>Role: <span class="role"></span></p>
+          <p>Skills: <span class="skills"></span></p>
+        </div>
+        <div class="delete-employee modal">
+          <div class="modal-header flex">
+            <h2>Delete Employee Details</h2>
+            <button class="close-button-container">
+              <img
+                class="close-button icon"
+                src="./assets/images/close_button_icon.svg"
+                alt="Delete employee modal close icon"
+              />
+            </button>
+          </div>
+          <p class="flex">
+            Do you really want to delete this employee's details?
+          </p>
+          <div class="confirmation-buttons flex">
+            <button class="primary-button" value="yes">Yes</button>
+            <button class="primary-button" value="no">No</button>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="table-options flex">
+          <div class="add-new-employee">
+            <button type="button" class="primary-button add-new-user flex">
+              <span>Add new user</span>
+              <img
+                class="add-new-user-icon icon"
+                src="./assets/images/add_user_icon.svg"
+                alt="Add new user icon"
+              />
+            </button>
+          </div>
+
+          <div class="filter">
+            <form
+              name="filter-search"
+              class="search-bar flex"
+              autocomplete="off"
+            >
+              <input
+                class="filter-search search-input"
+                type="text"
+                placeholder="Click to view dropdown"
+              />
+              <button type="button" class="clear-filter-button flex">
+                <img
+                  class="clear-filter-icon icon"
+                  src="./assets/images/clear_filter_icon.svg"
+                  alt="Clear filter icon"
+                />
+              </button>
+
+              <div class="flex filter-options-container"></div>
+            </form>
+          </div>
+        </div>
+        <div class="selected-skills flex"></div>
+      </section>
+      <section class="tabular-section">
+        <div class="table-container">
+          <table class="table">
+            <thead class="table-header">
+              <tr>
+                <th>
+                  <div
+                    title="Click to sort based on ID"
+                    class="column-header flex"
+                    data-storage-key="id"
+                  >
+                    <h3>Employee ID</h3>
+                    <img
+                      class="sort-icon open icon"
+                      src="./assets/images/ascending_order_icon.svg"
+                      alt="Sort indicator"
+                    />
+                  </div>
+                </th>
+                <th>
+                  <div
+                    title="Click to sort based on name"
+                    class="column-header flex"
+                    data-storage-key="name"
+                  >
+                    <h3>Name</h3>
+                    <img
+                      class="sort-icon icon"
+                      src="./assets/images/ascending_order_icon.svg"
+                      alt="Sort indicator"
+                    />
+                  </div>
+                </th>
+                <th>
+                  <div
+                    title="Click to sort based on department"
+                    class="column-header flex"
+                    data-storage-key="department"
+                  >
+                    <h3>Department</h3>
+                    <img
+                      class="sort-icon icon"
+                      src="./assets/images/ascending_order_icon.svg"
+                      alt="Sort indicator"
+                    />
+                  </div>
+                </th>
+                <th>
+                  <div
+                    title="Click to sort based on role"
+                    class="column-header flex"
+                    data-storage-key="role"
+                  >
+                    <h3>Role</h3>
+                    <img
+                      class="sort-icon"
+                      src="./assets/images/ascending_order_icon.svg"
+                      alt="Sort indicator"
+                    />
+                  </div>
+                </th>
+                <th>
+                  <div class="action-column flex">
+                    <h3>Actions</h3>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="table-body"></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="pagination flex">
+        <button class="page-controls" data-go-to="start">
+          <img
+            src="./assets/images/end_icon.svg"
+            class="back icon"
+            alt="start icon"
+          />
+        </button>
+        <button class="page-controls" data-go-to="previous">
+          <img
+            src="./assets/images/next_icon.svg"
+            class="back icon"
+            alt="previous icon"
+          />
+        </button>
+        <form name="pagination" class="custom" novalidate>
+          <input
+            class="custom-input"
+            type="number"
+            value="1"
+            min="1"
+            autocomplete="off"
+            data-type="page"
+            name="page-number"
+          />
+          <span class="total-pages"></span>
+        </form>
+        <button class="page-controls" data-go-to="next">
+          <img
+            class="icon"
+            src="./assets/images/next_icon.svg"
+            alt="next icon"
+          />
+        </button>
+        <button class="page-controls" data-go-to="end">
+          <img class="icon" src="./assets/images/end_icon.svg" alt="end icon" />
+        </button>
+      </section>
+    </main>
+    <footer>
+      <p class="footer-content flex">HRM Application</p>
+    </footer>
+    <script src="./js/firebase.js" type="module"></script>
+    <script src="./js/main.js" type="module"></script>
+  </body>
+</html>

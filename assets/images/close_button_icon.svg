@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" xmlns:inkscape ="http://www.inkscape.org/namespaces/inkscape" >
+<desc>CopyRight:SVG Design Editor;
+configurationStart;Unit=smInches;Dpi=96;Division=4;Grid=True;Zoom=1;CanvasW=32;CanvasH=32;configurationEnd;</desc>
+<g inkscape:label = "close_button_icon Default Layer" inkscape:groupmode = "layer" ><path style="fill:#000000;stroke:none; stroke-width:1" d="m12,13.4l2.9,2.9q0.27,0.27 0.7,0.27t0.7,-0.27q0.27,-0.27 0.27,-0.7t-0.27,-0.7l-2.9,-2.9l2.9,-2.9q0.27,-0.27 0.27,-0.7t-0.27,-0.7q-0.27,-0.28 -0.7,-0.28t-0.7,0.28l-2.9,2.9l-2.9,-2.9q-0.27,-0.28 -0.7,-0.28t-0.7,0.28q-0.28,0.28 -0.28,0.7t0.28,0.7l2.9,2.9l-2.9,2.9q-0.28,0.27 -0.28,0.7t0.28,0.7q0.28,0.27 0.7,0.27t0.7,-0.27l2.9,-2.9zm0,8.6q-2.08,0 -3.9,-0.79t-3.18,-2.14q-1.35,-1.35 -2.14,-3.18t-0.79,-3.9q0,-2.08 0.79,-3.9t2.14,-3.18q1.35,-1.35 3.18,-2.14t3.9,-0.79q2.08,0 3.9,0.79t3.17,2.14q1.35,1.35 2.14,3.18t0.79,3.9q0,2.08 -0.79,3.9t-2.14,3.17q-1.35,1.35 -3.18,2.14t-3.9,0.79l0,0zm0,-2q3.35,0 5.67,-2.33t2.33,-5.67q0,-3.35 -2.33,-5.68t-5.67,-2.33q-3.35,0 -5.68,2.33t-2.33,5.68q0,3.35 2.33,5.67t5.68,2.33zm0,-8z" transform = "matrix(1,0,0,1,0,0)" vector-effect="non-scaling-stroke" pen = "1,1" />
+</g>
+</svg>
