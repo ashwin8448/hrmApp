@@ -25,3 +25,10 @@ export const filterArray = (wholeArray) => {
   });
   return filteredArray;
 };
+
+export const filterSkills = (allSkills, input) => {
+  let filteredSkillOptions = allSkills.filter((skill) => {
+    return skill.toLowerCase().includes(input.toLowerCase());
+  });
+  return filteredSkillOptions;
+};

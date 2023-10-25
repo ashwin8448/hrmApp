@@ -16,6 +16,8 @@ import {
   filterForm,
   addSkills,
   formOptionsContainer,
+  filterSearch,
+  formHeading,
 } from "./elements.js";
 import { displayTable } from "./displayTable.js";
 import {
@@ -36,7 +38,9 @@ import {
 import { submitValidation, validationReset } from "./formValidation.js";
 import { toastHandler } from "./toast.js";
 import { loadEmployeeData } from "./edit.js";
-import { employees, lastId } from "./firebase.js";
+import { employees, lastId, skillOptions } from "./firebase.js";
+import { filterArray } from "./filter.js";
+import { loadSkills } from "./dropdown.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   addNewButton.addEventListener("click", () => {
@@ -81,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   newEmployeeForm.addEventListener("reset", (e) => {
     formOptionsContainer.classList.remove("open");
-    newEmployeeForm.previousElementSibling.innerHTML = "Add new user"
+    formHeading.innerHTML = "Add new user";
     validationReset();
   });
 
@@ -92,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       overlay.classList.add("open");
       switch (e.target.dataset.action) {
         case "view":
-          loadEmployeeData((e.target.dataset.employeeId), "view");
+          loadEmployeeData(e.target.dataset.employeeId, "view");
           viewEmployee.style.display = "block";
           setTimeout(() => viewEmployee.classList.add("open"), 100);
           break;
@@ -100,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
           loadEmployeeData(parseInt(e.target.dataset.employeeId), "edit");
           setIdToDelete(e.target.dataset.employeeId);
           newEmployeeForm.dataset.mode = "edit";
-          newEmployeeForm.previousElementSibling.innerHTML = "Edit user"
+          formHeading.innerHTML = "Edit user";
           newEmployeeFormContainer.style.display = "block";
           newEmployeeFormContainer.querySelector(".new-form").style.display =
             "none";
@@ -130,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!e.target.closest(".filter")) {
       filterOptionsContainer.classList.remove("open");
     }
-    if(!e.target.closest(".form-skills")){
+    if (!e.target.closest(".form-skills")) {
       formOptionsContainer.classList.remove("open");
     }
     if (e.target.classList.contains("close-button")) {
@@ -148,12 +152,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   selectedSkills.addEventListener("click", (e) => {
     if (e.target.tagName === "IMG") {
-      let targetTag = filterOptionsContainer.querySelector(`[data-skill="${e.target.dataset.skill}"]`);
+      let targetTag = filterOptionsContainer.querySelector(
+        `[data-skill="${e.target.dataset.skill}"]`
+      );
       targetTag.click();
     }
   });
 
   deleteModal.addEventListener("click", deleteHandler);
+
+  filterSearch.addEventListener("keyup", (e) => {
+    loadSkills(e.target.value, "filter");
+  });
+
+  addSkills.addEventListener("keyup", (e) => {
+    loadSkills(e.target.value, "form");
+  });
 
   nameSearch.addEventListener("keyup", (e) => {
     state.filterBy.search[0] = e.target.value;

@@ -52,14 +52,16 @@
         <div class="overlay"></div>
         <div class="loader-container"><span class="loader"></span></div>
         <div class="new-employee-form-container modal">
-          <button class="close-button-container">
-            <img
-              class="close-button icon"
-              src="./assets/images/close_button_icon.svg"
-              alt="New employee form close icon"
-            />
-          </button>
-          <h3>Add new user</h3>
+          <div class="modal-header flex">
+            <h2 class="form-heading">Add new user</h2>
+            <button class="close-button-container">
+              <img
+                class="close-button icon"
+                src="./assets/images/close_button_icon.svg"
+                alt="New employee form close icon"
+              />
+            </button>
+          </div>
           <form
             class="new-employee-form"
             name="new-employee-form"
@@ -157,7 +159,6 @@
                     name="skills"
                     placeholder="Click to choose skills"
                     class="form-skills"
-                    readonly
                   />
                   <p class="error-placeholder">Error placeholder</p>
                   <div class="flex form-options-container form-skills"></div>
@@ -184,33 +185,37 @@
           </form>
         </div>
         <div class="view-employee-container modal">
-          <button class="close-button-container">
-            <img
-              class="close-button icon"
-              src="./assets/images/close_button_icon.svg"
-              alt="New employee form close icon"
-            />
-          </button>
-          <h3>Employee Details</h3>
-          <p>Name: <span></span></p>
-          <p>Date of Birth: <span></span></p>
-          <p>Address: <span></span></p>
-          <p>Phone: <span></span></p>
-          <p>Email: <span></span></p>
-          <p>Date of joining: <span></span></p>
-          <p>Department: <span></span></p>
-          <p>Role: <span></span></p>
-          <p>Skills: <span></span></p>
+          <div class="modal-header flex">
+            <h2>Employee Details</h2>
+            <button class="close-button-container">
+              <img
+                class="close-button icon"
+                src="./assets/images/close_button_icon.svg"
+                alt="New employee form close icon"
+              />
+            </button>
+          </div>
+          <p>Name: <span class="name"></span></p>
+          <p>Date of Birth: <span class="dob"></span></p>
+          <p>Address: <span class="address"></span></p>
+          <p>Phone: <span class="phone"></span></p>
+          <p>Email: <span class="email"></span></p>
+          <p>Date of joining: <span class="doj"></span></p>
+          <p>Department: <span class="department"></span></p>
+          <p>Role: <span class="role"></span></p>
+          <p>Skills: <span class="skills"></span></p>
         </div>
         <div class="delete-employee modal">
-          <button class="close-button-container">
-            <img
-              class="close-button icon"
-              src="./assets/images/close_button_icon.svg"
-              alt="Delete employee modal close icon"
-            />
-          </button>
-          <h3 class="flex">Delete Employee Details</h3>
+          <div class="modal-header flex">
+            <h2>Delete Employee Details</h2>
+            <button class="close-button-container">
+              <img
+                class="close-button icon"
+                src="./assets/images/close_button_icon.svg"
+                alt="Delete employee modal close icon"
+              />
+            </button>
+          </div>
           <p class="flex">
             Do you really want to delete this employee's details?
           </p>

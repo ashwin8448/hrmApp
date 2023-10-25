@@ -105,6 +105,14 @@ select {
   opacity: 1;
 }
 
+.modal-header {
+  justify-content: space-between;
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
 .delete-header {
   justify-content: space-between;
 }
@@ -114,16 +122,15 @@ select {
   width: 25%;
 }
 
-.view-employee-container{
+.view-employee-container {
   max-height: 375px;
 }
 
-.delete-employee{
-  max-height: 170px;
+.delete-employee {
+  max-height: 180px;
 }
 
 .close-button {
-  float: right;
   width: 40px;
 }
 
@@ -244,7 +251,7 @@ New employee button, form
 }
 
 .form-options-container label::before,
-.new-employee-form .optional::before{
+.new-employee-form .optional::before {
   content: "";
 }
 
@@ -300,12 +307,14 @@ fieldset .primary-button {
   width: 100px;
 }
 
-.new-form {
-  display: none;
-}
-
+.new-form,
 .edit-form {
   display: none;
+  float: right;
+}
+
+.new-form [type="reset"] {
+  margin-right: 15px;
 }
 /*----------------------------- 
 Table 
@@ -422,20 +431,20 @@ Filter
   overflow: auto;
 }
 
-.form-options-container{
+.form-options-container {
   top: 58px;
 }
 
-.form-options{
+.form-options {
   align-items: baseline;
   gap: 5px;
 }
 
-.form-options input{
+.form-options input {
   height: auto;
 }
 
-.add-skills{
+.add-skills {
   position: relative;
   width: 100%;
 }
@@ -485,15 +494,17 @@ Filter
 .confirmation-buttons {
   gap: 20px;
   margin-top: 30px;
+  float: right;
+}
+
+.confirmation-buttons [value="yes"] {
+  background-color: red;
+  color: white;
 }
 
 .confirmation-buttons .primary-button {
   padding: 0 20px;
   width: 80px;
-}
-
-.close-button-container {
-  float: right;
 }
 
 main {

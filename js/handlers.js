@@ -67,7 +67,10 @@ const clearFilter = () => {
 export const addSkillHandler = (e) => {
   let target = e.target;
   //To open custom dropdown
+  console.log(e.target)
+  console.log(formOptionsContainer)
   formOptionsContainer.classList.add("open");
+  console.log(formOptionsContainer)
 };
 
 export const filterHandler = (e) => {

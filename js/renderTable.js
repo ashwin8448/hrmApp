@@ -4,6 +4,9 @@ import { pagination } from "./state.js";
 export const renderTable = (processedEmployees) => {
   paginationConatiner.style.visibility = "visible";
   let temp = "";
+  if (pagination.totalPages == 1) {
+    paginationConatiner.style.visibility = "hidden";
+  }
   if (!processedEmployees.length) {
     paginationConatiner.style.visibility = "hidden";
     temp =
