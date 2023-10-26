@@ -14,7 +14,8 @@ export const filterArray = (wholeArray) => {
         });
       } else {
         result *= state.filterBy[criteria].every((criteriaElement) => {
-          return employee[criteria].includes(criteriaElement);
+          if (employee[criteria])
+            return employee[criteria].includes(criteriaElement);
         });
       }
       if (!result) {
