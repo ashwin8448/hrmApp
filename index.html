@@ -68,103 +68,119 @@
             autocomplete="off"
             data-mode="new"
           >
-            <fieldset>
-              <legend>Personal Details</legend>
-              <div class="flex form-section">
-                <div class="element flex-column">
-                  <label for="fname">First name:</label>
-                  <input id="fname" type="text" name="fname" data-type="name" />
-                  <p class="error-placeholder">Error placeholder</p>
+            <div class="form-content">
+              <fieldset>
+                <legend>Personal Details</legend>
+                <div class="flex form-section">
+                  <div class="element flex-column">
+                    <label for="fname">First name:</label>
+                    <input
+                      id="fname"
+                      type="text"
+                      name="fname"
+                      data-type="name"
+                    />
+                    <p class="error-placeholder">Error placeholder</p>
+                  </div>
+                  <div class="element flex-column">
+                    <label for="lname">Last name:</label>
+                    <input
+                      id="lname"
+                      type="text"
+                      name="lname"
+                      data-type="name"
+                    />
+                    <p class="error-placeholder">Error placeholder</p>
+                  </div>
+                  <div class="element flex-column">
+                    <label for="dob">Date of birth:</label>
+                    <input id="dob" type="date" name="dob" data-type="date" />
+                    <p class="error-placeholder">Error placeholder</p>
+                  </div>
                 </div>
-                <div class="element flex-column">
-                  <label for="lname">Last name:</label>
-                  <input id="lname" type="text" name="lname" data-type="name" />
-                  <p class="error-placeholder">Error placeholder</p>
+              </fieldset>
+              <fieldset>
+                <legend>Contact Details</legend>
+                <div class="flex form-section">
+                  <div class="element flex-column">
+                    <label for="address">Address:</label>
+                    <input
+                      id="address"
+                      type="text"
+                      name="address"
+                      data-type="address"
+                    />
+                    <p class="error-placeholder">Error placeholder</p>
+                  </div>
+                  <div class="element flex-column">
+                    <label for="phone">Phone:</label>
+                    <input
+                      id="phone"
+                      type="tel"
+                      name="phone"
+                      maxlength="10"
+                      data-type="phone"
+                    />
+                    <p class="error-placeholder">Error placeholder</p>
+                  </div>
+                  <div class="element flex-column">
+                    <label for="email">Email:</label>
+                    <input
+                      id="email"
+                      type="text"
+                      name="email"
+                      data-type="email"
+                    />
+                    <p class="error-placeholder">Error placeholder</p>
+                  </div>
                 </div>
-                <div class="element flex-column">
-                  <label for="dob">Date of birth:</label>
-                  <input id="dob" type="date" name="dob" data-type="date" />
-                  <p class="error-placeholder">Error placeholder</p>
+              </fieldset>
+              <fieldset>
+                <legend>Employment Details</legend>
+                <div class="flex form-section">
+                  <div class="element flex-column">
+                    <label for="doj">Date of joining:</label>
+                    <input id="doj" type="date" name="doj" data-type="date" />
+                    <p class="error-placeholder">Error placeholder</p>
+                  </div>
+                  <div class="element flex-column">
+                    <label for="department">Department:</label>
+                    <select
+                      id="department"
+                      name="department"
+                      data-type="department"
+                    ></select>
+                    <p class="error-placeholder">Error placeholder</p>
+                  </div>
+                  <div class="element flex-column">
+                    <label for="role">Role:</label>
+                    <select
+                      id="role"
+                      name="role"
+                      data-type="role"
+                      autocomplete="off"
+                    ></select>
+                    <p class="error-placeholder">Error placeholder</p>
+                  </div>
+                  <div class="element flex-column">
+                    <label class="optional">Skills:</label>
+                    <input
+                      id="skills"
+                      type="text"
+                      name="skills"
+                      placeholder="Click to choose skills"
+                      class="form-skills"
+                    />
+                    <p class="error-placeholder">Error placeholder</p>
+                    <div class="flex form-options-container form-skills"></div>
+                  </div>
                 </div>
-              </div>
-            </fieldset>
-            <fieldset class="flex">
-              <legend>Contact Details</legend>
-              <div class="flex form-section">
-                <div class="element flex-column">
-                  <label for="address">Address:</label>
-                  <input
-                    id="address"
-                    type="text"
-                    name="address"
-                    data-type="address"
-                  />
-                  <p class="error-placeholder">Error placeholder</p>
+                <div class="form-selected-skills-container open flex">
+                  <span class="added-skills">Added skills:</span>
+                  <div class="form-selected-skills flex"></div>
                 </div>
-                <div class="element flex-column">
-                  <label for="phone">Phone:</label>
-                  <input
-                    id="phone"
-                    type="tel"
-                    name="phone"
-                    maxlength="10"
-                    data-type="phone"
-                  />
-                  <p class="error-placeholder">Error placeholder</p>
-                </div>
-                <div class="element flex-column">
-                  <label for="email">Email:</label>
-                  <input
-                    id="email"
-                    type="text"
-                    name="email"
-                    data-type="email"
-                  />
-                  <p class="error-placeholder">Error placeholder</p>
-                </div>
-              </div>
-            </fieldset>
-            <fieldset class="flex">
-              <legend>Employment Details</legend>
-              <div class="flex form-section">
-                <div class="element flex-column">
-                  <label for="doj">Date of joining:</label>
-                  <input id="doj" type="date" name="doj" data-type="date" />
-                  <p class="error-placeholder">Error placeholder</p>
-                </div>
-                <div class="element flex-column">
-                  <label for="department">Department:</label>
-                  <select
-                    id="department"
-                    name="department"
-                    data-type="department"
-                  ></select>
-                  <p class="error-placeholder">Error placeholder</p>
-                </div>
-                <div class="element flex-column">
-                  <label for="role">Role:</label>
-                  <select
-                    id="role"
-                    name="role"
-                    data-type="role"
-                    autocomplete="off"
-                  ></select>
-                  <p class="error-placeholder">Error placeholder</p>
-                </div>
-                <div class="element flex-column">
-                  <label class="optional">Skills:</label>
-                  <input
-                    id="skills"
-                    type="text"
-                    name="skills"
-                    placeholder="Click to choose skills"
-                    class="form-skills"
-                  />
-                  <p class="error-placeholder">Error placeholder</p>
-                  <div class="flex form-options-container form-skills"></div>
-                </div>
-              </div>
-            </fieldset>
+              </fieldset>
+            </div>
             <fieldset class="new-form">
               <input class="primary-button" type="reset" />
               <input
@@ -216,8 +232,9 @@
               />
             </button>
           </div>
-          <p class="flex">
-            Do you really want to delete this employee's details?
+          <p>
+            Do you really want to delete details of
+            <span class="delete-name-holder"></span>?
           </p>
           <div class="confirmation-buttons flex">
             <button class="primary-button" value="yes">Yes</button>
@@ -261,7 +278,10 @@
             </form>
           </div>
         </div>
-        <div class="selected-skills flex"></div>
+        <div class="selected-skills-container flex">
+          <span class="applied-filters">Applied filter:</span>
+          <div class="selected-skills flex"></div>
+        </div>
       </section>
       <section class="tabular-section">
         <div class="table-container">

@@ -21,7 +21,7 @@ export const setIdToDelete = (id) => {
 };
 
 export let pagination = {
-  rowsPerPage: 5,
+  rowsPerPage: 2,
   totalPages: 0,
 };
 
@@ -33,3 +33,5 @@ export const changePageNumber = (tag) => {
   if (tag.value > pagination.totalPages) tag.value = pagination.totalPages;
   else if (tag.value < 1) tag.value = 1;
 };
+
+export let employeeSkillsArray = [];

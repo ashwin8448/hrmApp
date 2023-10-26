@@ -6,7 +6,10 @@ export const newEmployeeFormContainer = document.querySelector(
   ".new-employee-form-container"
 );
 export const filter = document.querySelector(".filter");
+export const selectedSkillsContainer = document.querySelector(".selected-skills-container");
 export const selectedSkills = document.querySelector(".selected-skills");
+export const formSelectedSkillsContainer = document.querySelector(".form-selected-skills-container");
+export const formSelectedSkills = document.querySelector(".form-selected-skills");
 export const filterOptionsContainer = document.querySelector(
   ".filter-options-container"
 );
@@ -29,3 +32,4 @@ export const paginationForm = document.forms["pagination"];
 export const loaderContainer = document.querySelector(".loader-container");
 export const addSkills = document.querySelector(".new-employee-form #skills");
 export const formHeading = document.querySelector(".form-heading")
+export const deleteNameHolder = document.querySelector(".delete-name-holder")

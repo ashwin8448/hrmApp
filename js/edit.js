@@ -1,7 +1,11 @@
-import { formOptionsContainer, newEmployeeForm } from "./elements.js";
+import {
+  formOptionsContainer,
+  newEmployeeForm,
+} from "./elements.js";
 import { state } from "./state.js";
 import { filterArray } from "./filter.js";
 import { employees } from "./firebase.js";
+import { employeeSkillsArray } from "./state.js";
 
 export const loadEmployeeData = (id, mode) => {
   state.filterBy.id.push(id);
@@ -16,10 +20,13 @@ export const loadEmployeeData = (id, mode) => {
     newEmployeeForm["doj"].value = employee.doj;
     newEmployeeForm["department"].value = employee.department;
     newEmployeeForm["role"].value = employee.role;
-    for (let skill of employee.skills) {
-      formOptionsContainer.querySelector(
-        `[data-form-skill="${skill}"]`
-      ).checked = true;
+    employeeSkillsArray.splice(0, employeeSkillsArray.length);
+    if (employee.skills) {
+      for (let skill of employee.skills) {
+        formOptionsContainer
+          .querySelector(`[data-form-skill="${skill}"]`)
+          .click();
+      }
     }
   } else {
     document.querySelector(".name").innerHTML =
@@ -31,7 +38,9 @@ export const loadEmployeeData = (id, mode) => {
     document.querySelector(".doj").innerHTML = employee.doj;
     document.querySelector(".department").innerHTML = employee.department;
     document.querySelector(".role").innerHTML = employee.role;
-    document.querySelector(".skills").innerHTML = employee.skills;
+    document.querySelector(".skills").innerHTML = employee.skills
+      ? employee.skills.toString().replaceAll(",", ", ")
+      : "";
   }
   state.filterBy.id.splice(0, 1);
 };

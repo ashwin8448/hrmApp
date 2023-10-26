@@ -4,14 +4,14 @@ import { renderTable } from "./renderTable.js";
 import { pagination, setTotalPages } from "./state.js";
 import {
   loaderContainer,
-  overlay,
   pageCustomInput,
   totalPages,
 } from "./elements.js";
+import { removeOverlay } from "./util.js";
 
 export const displayTable = (employees) => {
   loaderContainer.classList.remove("open");
-  overlay.classList.remove("open");
+  removeOverlay();
   let filteredEmployees = filterArray(employees);
   setTotalPages(filteredEmployees.length);
   if (Number(pageCustomInput.value) > pagination.totalPages) {
