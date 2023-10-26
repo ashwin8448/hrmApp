@@ -1,34 +1,46 @@
-import { newEmployeeForm, viewEmployee } from "./elements.js";
+import {
+  formOptionsContainer,
+  newEmployeeForm,
+} from "./elements.js";
 import { state } from "./state.js";
-import { filterEmployees, filteredEmployees } from "./filter.js";
+import { filterArray } from "./filter.js";
+import { employees } from "./firebase.js";
+import { employeeSkillsArray } from "./state.js";
 
 export const loadEmployeeData = (id, mode) => {
   state.filterBy.id.push(id);
-  filterEmployees();
+  let employee = filterArray(employees)[0];
   if (mode == "edit") {
-    newEmployeeForm["fname"].value = filteredEmployees[0].fname;
-    newEmployeeForm["lname"].value = filteredEmployees[0].lname;
-    newEmployeeForm["dob"].value = filteredEmployees[0].dob;
-    newEmployeeForm["address"].value = filteredEmployees[0].address;
-    newEmployeeForm["phone"].value = filteredEmployees[0].phone;
-    newEmployeeForm["email"].value = filteredEmployees[0].email;
-    newEmployeeForm["doj"].value = filteredEmployees[0].doj;
-    newEmployeeForm["department"].value = filteredEmployees[0].department;
-    newEmployeeForm["role"].value = filteredEmployees[0].role;
-    newEmployeeForm["skills"].value = filteredEmployees[0].skills;
-  } else {
-    let count = 0;
-    viewEmployee.children[2].firstElementChild.innerHTML = "";
-    for (let detail in filteredEmployees[0]) {
-      if (count > 2) {
-        viewEmployee.children[count].firstElementChild.innerHTML =
-          filteredEmployees[0][detail];
-      } else if (count >= 1) {
-        viewEmployee.children[2].firstElementChild.innerHTML +=
-          filteredEmployees[0][detail] + " ";
+    newEmployeeForm["fname"].value = employee.fname;
+    newEmployeeForm["lname"].value = employee.lname;
+    newEmployeeForm["dob"].value = employee.dob;
+    newEmployeeForm["address"].value = employee.address;
+    newEmployeeForm["phone"].value = employee.phone;
+    newEmployeeForm["email"].value = employee.email;
+    newEmployeeForm["doj"].value = employee.doj;
+    newEmployeeForm["department"].value = employee.department;
+    newEmployeeForm["role"].value = employee.role;
+    employeeSkillsArray.splice(0, employeeSkillsArray.length);
+    if (employee.skills) {
+      for (let skill of employee.skills) {
+        formOptionsContainer
+          .querySelector(`[data-form-skill="${skill}"]`)
+          .click();
       }
-      count++;
     }
+  } else {
+    document.querySelector(".name").innerHTML =
+      employee.fname + " " + employee.lname;
+    document.querySelector(".dob").innerHTML = employee.dob;
+    document.querySelector(".address").innerHTML = employee.address;
+    document.querySelector(".phone").innerHTML = employee.phone;
+    document.querySelector(".email").innerHTML = employee.email;
+    document.querySelector(".doj").innerHTML = employee.doj;
+    document.querySelector(".department").innerHTML = employee.department;
+    document.querySelector(".role").innerHTML = employee.role;
+    document.querySelector(".skills").innerHTML = employee.skills
+      ? employee.skills.toString().replaceAll(",", ", ")
+      : "";
   }
   state.filterBy.id.splice(0, 1);
 };

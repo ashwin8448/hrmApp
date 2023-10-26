@@ -1,9 +1,7 @@
 # hrmApp
 
 **New features:**
-* New employees can be added.
-* Employee action buttons are functional.
-* Employees can be searched by name.
+* Pagination addded to web application.
 
 **Storage:**
 * The application uses localStorage.

@@ -1,13 +1,13 @@
 import { displayTable } from "./displayTable.js";
-import { employees, setEmployees } from "./firebase.js";
 import {
   deleteModal,
-  overlay,
   selectedSkills,
   filterOptionsContainer,
-  checkboxes,
   newEmployeeForm,
-  toast,
+  formOptionsContainer,
+  selectedSkillsContainer,
+  formSelectedSkills,
+  filterSearch,
 } from "./elements.js";
 import {
   idToDelete,
@@ -15,8 +15,9 @@ import {
   state,
   setSortIcon,
   setIdToDelete,
+  employeeSkillsArray,
 } from "./state.js";
-import { filterEmployees } from "./filter.js";
+import { filterArray } from "./filter.js";
 import {
   blankValidation,
   emailValidation,
@@ -24,22 +25,14 @@ import {
   nameValidation,
 } from "./formValidation.js";
 import { toastHandler } from "./toast.js";
-
-// const confirmBoxHandler = (e) => {
-//   if (
-//     e.target.tagName === "BUTTON" ||
-//     e.target.parentElement.tagName === "BUTTON"
-//   ) {
-//     if (e.target.value === "yes") {
-//       deleteModal.classList.remove("open");
-//       overlay.classList.remove("open");
-//       return true;
-//     }
-//     deleteModal.classList.remove("open");
-//     overlay.classList.remove("open");
-//     return false;
-//   }
-// };
+import {
+  createEmployee,
+  deleteEmployee,
+  employees,
+  updateEmployee,
+  updateLastId,
+} from "./firebase.js";
+import { loadFilteredSkills, removeOverlay } from "./util.js";
 
 export const deleteHandler = (e) => {
   if (
@@ -47,13 +40,11 @@ export const deleteHandler = (e) => {
     e.target.parentElement.tagName === "BUTTON"
   ) {
     if (e.target.value === "yes") {
-      setEmployees(employees.filter((employee) => employee.id != idToDelete));
-      localStorage.setItem("employees", JSON.stringify(employees));
-      displayTable();
-      toastHandler(`Employee ID ${idToDelete} deleted.`)
+      deleteEmployee(idToDelete);
+      toastHandler(`Employee ID ${idToDelete} deleted.`);
     }
     deleteModal.classList.remove("open");
-    overlay.classList.remove("open");
+    removeOverlay();
     setIdToDelete(-1);
   }
 };
@@ -66,15 +57,39 @@ export const sortHandler = (e) => {
   sortColumn.querySelector(".sort-icon").classList.toggle("open");
   setState("sortBy", key);
   setSortIcon(openSortIcon);
-  displayTable();
+  displayTable(employees);
 };
 
 const clearFilter = () => {
+  filterSearch.value="";
+  loadFilteredSkills("","filter")
+  selectedSkillsContainer.classList.remove("open");
   selectedSkills.innerHTML = "";
-  for (let checkbox of checkboxes) {
+  for (let checkbox of document.querySelectorAll(".filter-checkbox")) {
     checkbox.checked = false;
   }
   state.filterBy.skills.splice(0, state.filterBy.skills.length);
+};
+
+export const addSkillHandler = (e) => {
+  let target = e.target;
+  //To identify the skills added by user
+  if (target.classList.contains("form-checkbox")) {
+    if (!employeeSkillsArray.includes(target.value)) {
+      formSelectedSkills.innerHTML += `<div class="selected-skill-button flex" data-form-skill="${target.value}">
+            <span>${target.value}</span>
+            <button type="button" class="skill-close"><img data-form-skill="${target.value}" src="./assets/images/close_button_icon.svg" alt="close icon"></button>
+            </div>`;
+      employeeSkillsArray.push(target.value);
+    } else {
+      formSelectedSkills.removeChild(
+        formSelectedSkills.querySelector(
+          `.selected-skill-button[data-form-skill="${target.value}"]`
+        )
+      );
+      employeeSkillsArray.splice(employeeSkillsArray.indexOf(target.value), 1);
+    }
+  }
 };
 
 export const filterHandler = (e) => {
@@ -88,21 +103,24 @@ export const filterHandler = (e) => {
   else if (e.target.classList.contains("clear-filter-icon")) {
     filterOptionsContainer.classList.remove("open");
     clearFilter();
-    displayTable();
+    displayTable(employees);
   }
 
   //To identify the filters applied by user
   else {
     if (target.classList.contains("filter-checkbox")) {
       if (!state.filterBy.skills.includes(target.value)) {
-        selectedSkills.innerHTML += `<div class="selected-skill-button ${target.value} flex">
+        selectedSkillsContainer.classList.add("open");
+        selectedSkills.innerHTML += `<div class="selected-skill-button flex" data-skill="${target.value}">
             <span>${target.value}</span>
             <button type="button" class="skill-close"><img data-skill="${target.value}" src="./assets/images/close_button_icon.svg" alt="close icon"></button>
             </div>`;
         state.filterBy.skills.push(target.value);
       } else {
         selectedSkills.removeChild(
-          document.querySelector(`.selected-skill-button.${target.value}`)
+          selectedSkills.querySelector(
+            `.selected-skill-button[data-skill="${target.value}"]`
+          )
         );
         state.filterBy.skills.splice(
           state.filterBy.skills.indexOf(target.value),
@@ -110,18 +128,14 @@ export const filterHandler = (e) => {
         );
       }
     }
-    if (state.filterBy.skills.length == 0) {
-      clearFilter();
-    } else filterEmployees();
-    displayTable();
+    if (state.filterBy.skills.length == 0)   selectedSkillsContainer.classList.remove("open");
+    displayTable(employees);
   }
 };
 
-
-//Need to work on add employee. id must be autogenerated. 
-export const addNewEmployeeHandler = (e, id) => {
-  let tempEmployee = { skills: [] };
-  tempEmployee.id = id;
+export const addNewEmployeeHandler = (id, mode) => {
+  let tempEmployee = {};
+  tempEmployee.id = String(id);
   tempEmployee.fname = newEmployeeForm["fname"].value;
   tempEmployee.lname = newEmployeeForm["lname"].value;
   tempEmployee.dob = newEmployeeForm["dob"].value;
@@ -131,10 +145,16 @@ export const addNewEmployeeHandler = (e, id) => {
   tempEmployee.doj = newEmployeeForm["doj"].value;
   tempEmployee.department = newEmployeeForm["department"].value;
   tempEmployee.role = newEmployeeForm["role"].value;
-  tempEmployee.skills.push(newEmployeeForm["skills"].value);
-  setEmployees([...employees, ...[tempEmployee]]);
-  localStorage.setItem("employees", JSON.stringify(employees));
-  displayTable();
+  tempEmployee.skills = employeeSkillsArray;
+  if (mode == "new") {
+    createEmployee(tempEmployee, tempEmployee.id);
+    let tempIdObj = {};
+    tempIdObj.lastId = id;
+    updateLastId(tempIdObj);
+  } else {
+    updateEmployee(tempEmployee, tempEmployee.id);
+  }
+  employeeSkillsArray.splice(0, employeeSkillsArray.length);
 };
 
 export const validationHandler = (e) => {
