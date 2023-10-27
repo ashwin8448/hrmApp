@@ -10,7 +10,7 @@ import {
   ref,
 } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js";
 import { displayTable } from "./displayTable.js";
-import { loadDepartments, loadRoles, loadSkills } from "./dropdown.js";
+import { addOverlay, loadDepartments, loadRoles, loadSkills } from "./util.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB9RzV91uOswyTxNuiSvfTGullbi-EK2To",
@@ -52,7 +52,8 @@ export const setDepartments = (departmentsList) => {
 
 export const setSkills = (skillsList) => {
   skillOptions = skillsList;
-  loadSkills();
+  loadSkills("form");
+  loadSkills("filter");
 };
 
 export const setLastId = (data) => {
@@ -61,7 +62,7 @@ export const setLastId = (data) => {
 
 const getEmployees = (callback) => {
   loaderContainer.classList.add("open");
-  overlay.classList.add("open");
+  addOverlay();
   let userRef = ref(db, "employeeDetails/");
   onValue(userRef, (snapshot) => {
     if (snapshot.exists()) {

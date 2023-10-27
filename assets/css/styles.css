@@ -13,8 +13,7 @@ Common styles
   --button: #ffffff;
   --overlay-bg: rgba(0, 0, 0, 0.459);
   --hover-bg: #958989b5;
-  --toast-bg-primary: rgb(70, 161, 70);
-  --toast-bg-secondary: #dddddd;
+  --toast-bg: rgb(70, 161, 70);
   --selected-skill: #ffcb00;
   --asterisk: red;
   --validation-message: red;
@@ -61,6 +60,34 @@ input[type="reset"] {
   outline: inherit;
 }
 
+/*Remove arrow from input[type="number"]*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Scrollbar Thickness */
+::-webkit-scrollbar {
+  width: 0.5em;
+  height: 2em;
+}
+::-webkit-scrollbar-button {
+  background: #ccc;
+}
+::-webkit-scrollbar-track-piece {
+  background: #888;
+}
+::-webkit-scrollbar-thumb {
+  background: #eee;
+}
+
 .primary-button,
 fieldset .primary-button {
   background-color: var(--button);
@@ -83,7 +110,6 @@ select {
 .modal {
   background-color: var(--modal-bg);
   max-height: 90vh;
-  overflow: auto;
   display: none;
   visibility: hidden;
   padding: 15px;
@@ -109,6 +135,10 @@ select {
   justify-content: space-between;
 }
 
+.new-employee-form-container .modal-header {
+  padding: 0 15px;
+}
+
 .modal-header h2 {
   margin: 0;
 }
@@ -127,7 +157,7 @@ select {
 }
 
 .delete-employee {
-  max-height: 180px;
+  max-height: 200px;
 }
 
 .close-button {
@@ -188,22 +218,18 @@ select {
 .toast {
   width: 300px;
   position: fixed;
-  left: 110%;
+  right: -350px;
   top: 175px;
   transition: all 0.5s;
   z-index: 50;
   padding: 20px;
-  background-image: linear-gradient(
-    to right,
-    var(--toast-bg-secondary) 15px,
-    var(--toast-bg-primary) 15px
-  );
+  background-color: var(--toast-bg);
   color: white;
   box-shadow: 0 0 20px #353535;
 }
 
 .toast.open {
-  transform: translate(-425px);
+  transform: translate(-350px);
 }
 /*----------------------------- 
 Header 
@@ -255,6 +281,11 @@ New employee button, form
   content: "";
 }
 
+.form-content {
+  overflow: auto;
+  height: 75vh;
+}
+
 .add-new-user {
   width: 150px;
   align-items: center;
@@ -282,15 +313,17 @@ select {
   box-sizing: border-box;
 }
 
+.new-employee-form-container {
+  padding: 15px 0;
+}
+
 legend {
   font-weight: 800;
+  margin: 5px 0;
 }
 
 fieldset {
   border: 0;
-  padding: 15px 0;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .form-section {
@@ -330,10 +363,6 @@ thead {
   text-align: left;
   height: 40px;
 }
-
-/* .employee-id {
-  text-align: right;
-} */
 
 table {
   border-collapse: collapse;
@@ -381,13 +410,40 @@ td {
 /*----------------------------- 
 Filter
 -----------------------------*/
-.selected-skills {
-  gap: 15px;
-  padding: 10px;
-  visibility: visible;
-  height: 40px;
+.selected-skills-container,
+.form-selected-skills-container {
+  align-items: center;
   margin: 15px 0;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 10px 0 10px 10px;
+  visibility: hidden;
+}
+
+.selected-skills-container.open,
+.form-selected-skills-container.open {
+  visibility: visible;
+}
+
+.selected-skills-container .applied-filters,
+.form-selected-skills-container .added-skills {
+  width: 135px;
+}
+
+.selected-skills,
+.form-selected-skills {
+  gap: 15px;
+  padding: 0 10px;
+}
+
+.selected-skills{
   overflow: auto;
+  height: 40px;
+}
+
+
+.form-selected-skills {
+  flex-wrap: wrap;
 }
 
 .selected-skill-button {
@@ -485,6 +541,10 @@ Filter
 
 .delete-employee .primary-button {
   padding: 5px;
+}
+
+.delete-name-holder {
+  color: red;
 }
 
 .action-button-container {

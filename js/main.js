@@ -2,7 +2,6 @@ import {
   table,
   addNewButton,
   deleteModal,
-  overlay,
   filterOptionsContainer,
   filter,
   selectedSkills,
@@ -18,6 +17,8 @@ import {
   formOptionsContainer,
   filterSearch,
   formHeading,
+  deleteNameHolder,
+  formSelectedSkills,
 } from "./elements.js";
 import { displayTable } from "./displayTable.js";
 import {
@@ -34,20 +35,23 @@ import {
   state,
   pagination,
   changePageNumber,
+  employeeSkillsArray,
 } from "./state.js";
 import { submitValidation, validationReset } from "./formValidation.js";
 import { toastHandler } from "./toast.js";
 import { loadEmployeeData } from "./edit.js";
 import { employees, lastId, skillOptions } from "./firebase.js";
-import { filterArray } from "./filter.js";
-import { loadSkills } from "./dropdown.js";
+import { loadFilteredSkills } from "./util.js";
+import { addOverlay, removeOverlay } from "./util.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   addNewButton.addEventListener("click", () => {
+    loadFilteredSkills("", "form")
+    employeeSkillsArray.splice(0, employeeSkillsArray.length);
     newEmployeeForm.dataset.mode = "new";
     newEmployeeFormContainer.querySelector(".new-form").style.display = "block";
     newEmployeeFormContainer.querySelector(".edit-form").style.display = "none";
-    overlay.classList.add("open");
+    addOverlay();
     newEmployeeFormContainer.style.display = "block";
     let currentDate = new Date();
     newEmployeeForm["dob"].max = `${currentDate.getFullYear() - 18}-${
@@ -69,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       addNewEmployeeHandler(employeeId, newEmployeeForm.dataset.mode);
       setIdToDelete(-1);
-      overlay.classList.remove("open");
+      removeOverlay();
       newEmployeeFormContainer.classList.remove("open");
       setTimeout(() => {
         newEmployeeFormContainer.style.display = "none";
@@ -86,6 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
   newEmployeeForm.addEventListener("reset", (e) => {
     formOptionsContainer.classList.remove("open");
     formHeading.innerHTML = "Add new user";
+    formSelectedSkills.innerHTML="";
+    employeeSkillsArray.splice(0, employeeSkillsArray.length);
     validationReset();
   });
 
@@ -93,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.closest(".column-header")) {
       sortHandler(e);
     } else if (e.target.dataset.action) {
-      overlay.classList.add("open");
+      addOverlay();
       switch (e.target.dataset.action) {
         case "view":
           loadEmployeeData(e.target.dataset.employeeId, "view");
@@ -101,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
           setTimeout(() => viewEmployee.classList.add("open"), 100);
           break;
         case "edit":
+          loadFilteredSkills("", "form");
           loadEmployeeData(parseInt(e.target.dataset.employeeId), "edit");
           setIdToDelete(e.target.dataset.employeeId);
           newEmployeeForm.dataset.mode = "edit";
@@ -114,6 +121,11 @@ document.addEventListener("DOMContentLoaded", () => {
           break;
         case "delete":
           setIdToDelete(parseInt(e.target.dataset.employeeId));
+          let employeeToBeDeleted = employees.filter((employee) => {
+            return employee.id == idToDelete;
+          });
+          deleteNameHolder.innerHTML =
+            employeeToBeDeleted[0].fname + " " + employeeToBeDeleted[0].lname;
           deleteModal.style.display = "block";
           setTimeout(() => {
             deleteModal.classList.add("open");
@@ -124,7 +136,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   filter.addEventListener("click", filterHandler);
-  addSkills.addEventListener("click", addSkillHandler);
+  addSkills.addEventListener("click", () => {
+    formOptionsContainer.classList.add("open");
+  });
+  formOptionsContainer.addEventListener("click", addSkillHandler);
 
   filterForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -138,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
       formOptionsContainer.classList.remove("open");
     }
     if (e.target.classList.contains("close-button")) {
-      overlay.classList.remove("open");
+      removeOverlay();
       e.target.closest(".modal").classList.remove("open");
       setTimeout(() => (newEmployeeFormContainer.style.display = "none"), 500);
       if (
@@ -155,6 +170,15 @@ document.addEventListener("DOMContentLoaded", () => {
       let targetTag = filterOptionsContainer.querySelector(
         `[data-skill="${e.target.dataset.skill}"]`
       );
+      if(targetTag) targetTag.click();
+    }
+  });
+
+  formSelectedSkills.addEventListener("click", (e) => {
+    if (e.target.tagName === "IMG") {
+      let targetTag = formOptionsContainer.querySelector(
+        `[data-form-skill="${e.target.dataset.formSkill}"]`
+      );
       targetTag.click();
     }
   });
@@ -162,11 +186,11 @@ document.addEventListener("DOMContentLoaded", () => {
   deleteModal.addEventListener("click", deleteHandler);
 
   filterSearch.addEventListener("keyup", (e) => {
-    loadSkills(e.target.value, "filter");
+    loadFilteredSkills(e.target.value, "filter");
   });
 
   addSkills.addEventListener("keyup", (e) => {
-    loadSkills(e.target.value, "form");
+    loadFilteredSkills(e.target.value, "form");
   });
 
   nameSearch.addEventListener("keyup", (e) => {

@@ -1,11 +1,13 @@
 import { displayTable } from "./displayTable.js";
 import {
   deleteModal,
-  overlay,
   selectedSkills,
   filterOptionsContainer,
   newEmployeeForm,
   formOptionsContainer,
+  selectedSkillsContainer,
+  formSelectedSkills,
+  filterSearch,
 } from "./elements.js";
 import {
   idToDelete,
@@ -13,6 +15,7 @@ import {
   state,
   setSortIcon,
   setIdToDelete,
+  employeeSkillsArray,
 } from "./state.js";
 import { filterArray } from "./filter.js";
 import {
@@ -29,6 +32,7 @@ import {
   updateEmployee,
   updateLastId,
 } from "./firebase.js";
+import { loadFilteredSkills, removeOverlay } from "./util.js";
 
 export const deleteHandler = (e) => {
   if (
@@ -40,7 +44,7 @@ export const deleteHandler = (e) => {
       toastHandler(`Employee ID ${idToDelete} deleted.`);
     }
     deleteModal.classList.remove("open");
-    overlay.classList.remove("open");
+    removeOverlay();
     setIdToDelete(-1);
   }
 };
@@ -57,6 +61,9 @@ export const sortHandler = (e) => {
 };
 
 const clearFilter = () => {
+  filterSearch.value="";
+  loadFilteredSkills("","filter")
+  selectedSkillsContainer.classList.remove("open");
   selectedSkills.innerHTML = "";
   for (let checkbox of document.querySelectorAll(".filter-checkbox")) {
     checkbox.checked = false;
@@ -66,11 +73,23 @@ const clearFilter = () => {
 
 export const addSkillHandler = (e) => {
   let target = e.target;
-  //To open custom dropdown
-  console.log(e.target)
-  console.log(formOptionsContainer)
-  formOptionsContainer.classList.add("open");
-  console.log(formOptionsContainer)
+  //To identify the skills added by user
+  if (target.classList.contains("form-checkbox")) {
+    if (!employeeSkillsArray.includes(target.value)) {
+      formSelectedSkills.innerHTML += `<div class="selected-skill-button flex" data-form-skill="${target.value}">
+            <span>${target.value}</span>
+            <button type="button" class="skill-close"><img data-form-skill="${target.value}" src="./assets/images/close_button_icon.svg" alt="close icon"></button>
+            </div>`;
+      employeeSkillsArray.push(target.value);
+    } else {
+      formSelectedSkills.removeChild(
+        formSelectedSkills.querySelector(
+          `.selected-skill-button[data-form-skill="${target.value}"]`
+        )
+      );
+      employeeSkillsArray.splice(employeeSkillsArray.indexOf(target.value), 1);
+    }
+  }
 };
 
 export const filterHandler = (e) => {
@@ -91,6 +110,7 @@ export const filterHandler = (e) => {
   else {
     if (target.classList.contains("filter-checkbox")) {
       if (!state.filterBy.skills.includes(target.value)) {
+        selectedSkillsContainer.classList.add("open");
         selectedSkills.innerHTML += `<div class="selected-skill-button flex" data-skill="${target.value}">
             <span>${target.value}</span>
             <button type="button" class="skill-close"><img data-skill="${target.value}" src="./assets/images/close_button_icon.svg" alt="close icon"></button>
@@ -108,14 +128,13 @@ export const filterHandler = (e) => {
         );
       }
     }
-    if (state.filterBy.skills.length == 0) clearFilter();
+    if (state.filterBy.skills.length == 0)   selectedSkillsContainer.classList.remove("open");
     displayTable(employees);
   }
 };
 
 export const addNewEmployeeHandler = (id, mode) => {
   let tempEmployee = {};
-  let skills = [];
   tempEmployee.id = String(id);
   tempEmployee.fname = newEmployeeForm["fname"].value;
   tempEmployee.lname = newEmployeeForm["lname"].value;
@@ -126,12 +145,7 @@ export const addNewEmployeeHandler = (id, mode) => {
   tempEmployee.doj = newEmployeeForm["doj"].value;
   tempEmployee.department = newEmployeeForm["department"].value;
   tempEmployee.role = newEmployeeForm["role"].value;
-  for (let checkbox of document.querySelectorAll(".form-checkbox")) {
-    if (checkbox.checked == true) {
-      skills.push(checkbox.value);
-    }
-  }
-  tempEmployee.skills = skills;
+  tempEmployee.skills = employeeSkillsArray;
   if (mode == "new") {
     createEmployee(tempEmployee, tempEmployee.id);
     let tempIdObj = {};
@@ -140,6 +154,7 @@ export const addNewEmployeeHandler = (id, mode) => {
   } else {
     updateEmployee(tempEmployee, tempEmployee.id);
   }
+  employeeSkillsArray.splice(0, employeeSkillsArray.length);
 };
 
 export const validationHandler = (e) => {
