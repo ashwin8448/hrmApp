@@ -29,16 +29,16 @@ export const loadEmployeeData = (id, mode) => {
       }
     }
   } else {
-    document.querySelector(".name").innerHTML =
+    document.querySelector(".name").innerText =
       employee.fname + " " + employee.lname;
-    document.querySelector(".dob").innerHTML = employee.dob;
-    document.querySelector(".address").innerHTML = employee.address;
-    document.querySelector(".phone").innerHTML = employee.phone;
-    document.querySelector(".email").innerHTML = employee.email;
-    document.querySelector(".doj").innerHTML = employee.doj;
-    document.querySelector(".department").innerHTML = employee.department;
-    document.querySelector(".role").innerHTML = employee.role;
-    document.querySelector(".skills").innerHTML = employee.skills
+    document.querySelector(".dob").innerText = employee.dob;
+    document.querySelector(".address").innerText = employee.address;
+    document.querySelector(".phone").innerText = employee.phone;
+    document.querySelector(".email").innerText = employee.email;
+    document.querySelector(".doj").innerText = employee.doj;
+    document.querySelector(".department").innerText = employee.department;
+    document.querySelector(".role").innerText = employee.role;
+    document.querySelector(".skills").innerText = employee.skills
       ? employee.skills.toString().replaceAll(",", ", ")
       : "";
   }
